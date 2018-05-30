@@ -1,30 +1,56 @@
 ---
-title: Installing and Configuring YOUR-PRODUCT-NAME
+title: Installing and Configuring Riverbed SteelCentral AppInternals for PCF
 owner: Partners
 ---
 
-This topic describes how to install and configure YOUR-PRODUCT-NAME.
+This topic describes how to install and configure Riverbed SteelCentral AppInternals for PCF.
 
-##<a id='install'></a> Install and Configure YOUR-PRODUCT-NAME
+##<a id='install'></a> Install and Configure Riverbed SteelCentral AppInternals for PCF
 
-To install the YOUR-PRODUCT-NAME file on the Ops Manager Installation Dashboard, do the following:
+To install the Riverbed SteelCentral AppInternals for PCF file on the Ops Manager Installation Dashboard, do the following:
 
 1. Download the product file from Pivotal Network.
 
 1. Navigate to the Ops Manager Installation Dashboard and click **Import a Product** to upload the product file. 
 
-1. Under the **Import a Product** button, click **+** next to the version number of YOUR-PRODUCT-NAME. 
+1. Under the **Import a Product** button, click **+** next to the version number of Riverbed SteelCentral AppInternals for PCF. 
 This adds the tile to your staging area.
 
-1. Click the newly added **YOUR-PRODUCT-NAME** tile.
+1. Click the newly added **Riverbed SteelCentral AppInternals for PCF** tile.
 
-1. **This portion of the procedure should tell the users how to configure the newly added tile by
-walking them through the sections. Which fields should they fill out? What are the different
-checkboxes? Include relevant screenshots here.** 
+1. From the **Settings** tab, click **AppInternals Analysis Server**
+
+1. If you are using an on premises Analysis Server, click the **On Prem** button
+
+	<%= image_tag("OnPrem-OpsManager.png") %>
+
+	Complete these fields:
+	* **Analysis Server Address**: The name or IP address of your On Premises Riverbed Analysis Server (required)
+	* **Analysis Server Port**: The port that Analysis Server listens on (the default is normally used)
+	
+1. If you are using the Riverbed SaaS Anlysis Server, click the **SaaS** button
+
+	<%= image_tag("SaaS-OpsManager.png") %>
+
+	Complete these fields:
+	* **Customer ID**: Your Trial or Subscription key from Riverbed (required)
+	* **SaaS Server Name**: The name of the Riverbed SaaS Server (the default is normally used)
+	* **SaaS Server Port**: The port that Analysis Server listens on (the default is normally used)
+	
+1. If your Cells (VMs) need to go through a Proxy Server to reach the Analysis Server, complete the Proxy Settings
+
+	<%= image_tag("Proxy-OpsManager.png") %>
+
+	Complete as many of these fields as necessary:
+	* **Proxy Server Address**: Your proxy server name or IP
+	* **Proxy Server Port**: Your proxy server's port (default is 8080)
+	* **Proxy Server Username**
+	* **Proxy Server Password** 
+	* **Proxy Server Realm**
 
 1. Click **Save**.
 
-1. Return to the Ops Manager Installation Dashboard and click **Apply changes** to install YOUR-PRODUCT-NAME tile.
+1. Return to the Ops Manager Installation Dashboard and click **Apply changes** to install Riverbed SteelCentral AppInternals for PCF tile.
 
-**If needed, include additional configuration information below. For example, maybe there are
-configuration options not required for installation but which could be useful for certain users.**
+<!-- **TODO If needed, include additional configuration information below. For example, maybe there are
+configuration options not required for installation but which could be useful for certain users.** -->
