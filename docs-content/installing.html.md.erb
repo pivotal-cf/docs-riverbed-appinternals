@@ -1,26 +1,29 @@
 ---
-title: Installing and Configuring Riverbed SteelCentral AppInternals for PCF
+title: Installing and Configuring AppInternals
 owner: Partners
 ---
 
-This topic describes how to install and configure Riverbed SteelCentral AppInternals for PCF.
+This topic describes how to install and configure Riverbed SteelCentral AppInternals for PCF. It also describes how
+to create the AppInternals Service so that applications can bind to it for full profiling.
 
-##<a id='install'></a> Install and Configure Riverbed SteelCentral AppInternals for PCF
+##<a id='install'></a> Install the AppInternals Tile
 
-To install the Riverbed SteelCentral AppInternals for PCF file on the Ops Manager Installation Dashboard, do the following:
+Install the **Riverbed SteelCentral AppInternals for PCF** tile using the Ops Manager Installation Dashboard:
 
-1. Download the product file from Pivotal Network.
+1. Download the product file from [Pivotal Network] (https://network.pivotal.io/products/riverbed-appinternals).
 
 1. Navigate to the Ops Manager Installation Dashboard and click **Import a Product** to upload the product file. 
 
 1. Under the **Import a Product** button, click **+** next to the version number of Riverbed SteelCentral AppInternals for PCF. 
 This adds the tile to your staging area.
 
+##<a id='config'></a> Configure the AppInternals Tile
+
 1. Click the newly added **Riverbed SteelCentral AppInternals for PCF** tile.
 
 1. From the **Settings** tab, click **AppInternals Analysis Server**
 
-1. If you are using an on premises Analysis Server, click the **On Prem** button
+1. If you are using an on premises Analysis Server, click the **On Prem** button [see Alternate Steps for PCF 1.12](#PCF112)
 
 	<%= image_tag("OnPrem-OpsManager.png") %>
 
@@ -28,7 +31,7 @@ This adds the tile to your staging area.
 	* **Analysis Server Address**: The name or IP address of your On Premises Riverbed Analysis Server (required)
 	* **Analysis Server Port**: The port that Analysis Server listens on (the default is normally used)
 	
-1. If you are using the Riverbed SaaS Anlysis Server, click the **SaaS** button
+1. If you are using the Riverbed SaaS Anlysis Server, click the **SaaS** button [see Alternate Steps for PCF 1.12](#PCF112)
 
 	<%= image_tag("SaaS-OpsManager.png") %>
 
@@ -37,7 +40,8 @@ This adds the tile to your staging area.
 	* **SaaS Server Name**: The name of the Riverbed SaaS Server (the default is normally used)
 	* **SaaS Server Port**: The port that Analysis Server listens on (the default is normally used)
 	
-1. If your Cells (VMs) need to go through a Proxy Server to reach the Analysis Server, complete the Proxy Settings
+1. If your Cells (VMs) need to go through a Proxy Server to reach the Analysis Server, 
+complete the Proxy Settings [see Alternate Steps for PCF 1.12](#PCF112)
 
 	<%= image_tag("Proxy-OpsManager.png") %>
 
@@ -50,7 +54,20 @@ This adds the tile to your staging area.
 
 1. Click **Save**.
 
-1. Return to the Ops Manager Installation Dashboard and click **Apply changes** to install Riverbed SteelCentral AppInternals for PCF tile.
+1. Return to the Ops Manager Installation Dashboard and click **Apply changes** to install 
+Riverbed SteelCentral AppInternals for PCF tile.
 
-<!-- **TODO If needed, include additional configuration information below. For example, maybe there are
-configuration options not required for installation but which could be useful for certain users.** -->
+##<a id='service'></a> Create the AppInternals Service
+
+After you create the AppInternals Service instance, you can bind applications to it for full profiling. 
+See [Using AppInternals](using.html) 
+for how to bind Applications to get the full benefit of AppInternals.
+
+** TODO Create service with "AppInternals" in its name -- Or link to our documentation**
+
+##<a id='PCF112'></a> Alternate Steps for PCF 1.12
+
+In PCF 1.12, the OpsManager does not support configuration of the Tile via its UI. 
+So there are some manual steps you must do.
+
+** TODO add more steps here or add a link to our documentation**
