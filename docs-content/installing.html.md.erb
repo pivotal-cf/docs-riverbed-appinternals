@@ -59,15 +59,27 @@ Riverbed SteelCentral AppInternals for PCF tile.
 
 ##<a id='service'></a> Create the AppInternals Service
 
-After you create the AppInternals Service instance, you can bind applications to it for full profiling. 
-See [Using AppInternals](using.html) 
-for how to bind Applications to get the full benefit of AppInternals.
+In order to have AppInternals profile your applications, create the AppInternals Service and bind individual applications to it. 
+This section shows how to create the Service:
 
-** TODO Create service with "AppInternals" in its name -- Or link to our documentation**
+
+1. Open the Apps Manager
+1. Click **Marketplace**
+1. Click **Riverbed SteelCentral Appinternals**
+1. Click **SELECT THIS PLAN**
+<%= image_tag("SelectThisPlan.png") %>
+1. Give it an **Instance Name** with "appinternals" in it
+<%= image_tag("CreateService.png") %>
+1. Click **Create**
+
+Now that you have an instance of the AppInternals Service running, you can bind applications to it.
+See the next section, [Using AppInternals](using.html), for instruction on how to bind Applications to get the full benefit of AppInternals.
+
+
 
 ##<a id='PCF112'></a> Alternate Steps for PCF 1.12
 
 In PCF 1.12, the OpsManager does not support configuration of the Tile via its UI. 
 So there are some manual steps you must do.
 
-** TODO add more steps here or add a link to our documentation**
+** TODO add more steps here **
