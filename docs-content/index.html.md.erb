@@ -15,14 +15,17 @@ The Riverbed SteelCentral AppInternals for PCF tile is currently in beta test. I
 
 Riverbed® SteelCentral AppInternals™ for PCF monitors Java applications running in a Pivotal Cloud Foundry v1.2 or v2.0 environment.  
 
-In addition to instrumenting and monitoring applications running in PCF containers, the AppInternals agent collects metrics on key operating system on VM hosts (Diego or compute cells) where the applications are running. 
-
-<%= image_tag("architecture.png") %>
-
 This documentation describes installing the AppInternals Service Broker tile for PCF and configuring applications to start with AppInternals monitoring.  
 
-See the following links for general information on AppInternals:
+AppInternals agents capture every application transaction at 1 second intervals.  
+In addition to instrumenting and monitoring applications running in PCF containers, the agent collects metrics on key operating system on VM hosts <!-- (Diego or compute cells) --> where the applications are running. 
+
+The AppInternals analysis server harvests, processes, and displays this data, giving you immediate insight into application performance problems.  
+
+See the following links for MORE information on AppInternals:
+
 * [Product overview](https://www.riverbed.com/products/steelcentral/steelcentral-appinternals.html)
+
 * [Product documentation](http://doc.steelcentral.net/)
 
 <!-- AppInternals delivers scalable, high-definition application 
@@ -44,35 +47,39 @@ vice versa. Resolve resource utilization and network-related errors before users
 Understand your users’ satisfaction and trends in real-time. Identify your application’s 
 best and least used features, and quantify its financial impact on business results.
  -->
+
 <!-- **Note**: This overview will appear under **OVERVIEW**, combined with the description above in the tile's listing on 
 [Pivotal Network](http://network.pivotal.io).-->
 
-## <a id='features'></a>Key Features
+## <a id='features'></a>Summary of Steps 
 
 <!-- **Note**: This feature list will appear under **FEATURES** in the tile's listing on 
 [Pivotal Network](http://network.pivotal.io). 
 Make sure you list the key features of the tile (the integration). 
 We cannot accept a list of the key features of your product that we are integrating.-->
 
-* **Never Miss a Performance Problem**
-You’re only two clicks from an answer to virtually any performance problem. Continuously monitor 
-the full stack on and off the cloud with little overhead to expose and troubleshoot issues in great detail.
+The *AppInternals for PCF* tile includes the Riverbed AppInternals Service Broker and the BOSH add-on for the AppInternals Agent.  Install the tile to deploy the agent on PCF VM hosts (additional steps are required for PCF v1.12).
 
-* **Reconstruct &amp; Diagnose All Incidents**
-Trace transactions from the user, over the network and into the backend, while capturing system 
-metrics every second. Reconstruct incidents in great detail to fix application, network or infrastructure issues.
+<%= image_tag("architecture.png") %>
 
-* **Manage Distributed Environments**
-Monitor your dynamic infrastructure, including those within IaaS, PaaS and containerized environments. 
-See your server and network topology to understand dependencies or plan for capacity.
+To monitor applications:
 
-* **Derive Business &amp; App Intelligence**
-Discover key business transactions and quantify the application’s financial impact on the business. 
-Use simple queries to expose bugs or to plan for capacity. Improve performance with every release.
+* In the PCF Ops Manager:
 
-* **Collaborate Across the Application Lifecycle**
-Share insights across the application lifecycle. Use REST API to consume alerts, metrics and diagnostics 
-across the build tool chain, collaboration tools and incident management tools.
+  * Import the tile 
+
+  * Configure the service broker to specify agent settings, including the analysis server that will host the agent data
+  
+  * Apply changes 
+
+  See [Installing and Configuring AppInternals](installing.html) for details.
+
+* In your development environment or staging area, use the Cloud Foundry CLI to push an application from your environment to PCF
+  
+* In the Pivotal Apps Manager, bind the application to the Appinternals service 
+
+* In your development environment or staging area, use the Cloud Foundry CLI to restage the application
+
 
 ## <a id="snapshot"></a>Product Snapshot
 
@@ -122,7 +129,7 @@ One of the following is required to use AppInternals:
 
 ## <a id="limitations"></a>Limitations
 
-This version does not support Windows stemcells (it will ignore them)
+This version does not support Windows stemcells.  Applications pushed to a Windows cell will be ignored.
 
 ## <a id="feedback"></a>Feedback
 
