@@ -3,11 +3,25 @@ title: Using AppInternals
 owner: Partners
 ---
 
-This topic describes how to use Riverbed SteelCentral AppInternals for PCF.
+This topic describes how to push an application to PCF and bind it to an AppInternals service instance.  
 
-##<a id='overview'></a> Overview
+##<a id='before'>Before You Begin
 
-There are several ways to bind your apps to the AppInternals Service.  This is one of them:
+1.  Complete the one-time steps described in xxx
+
+1.    Create a Pivotal Network account if you do not have one.
+
+1    Install the Cloud Foundry Command Line Interface (cf CLI). See Installing the cf CLI.
+
+https://docs.pivotal.io/pivotalcf/2-1/cf-cli/install-go-cli.html
+https://docs.cloudfoundry.org/cf-cli/install-go-cli.html
+
+
+##<a id='cli'>Log in to the Pivotal CLI
+
+##<a id='push'>Push the Application
+
+##<a id='bind'>Bind the Service Plan to the Application
 
 1. Use the Apps Manager to find your application
 
@@ -23,6 +37,12 @@ There are several ways to bind your apps to the AppInternals Service.  This is o
 
     <%= image_tag("BoundServiceAppsManager.png") %>
 
+
+##<a id='restage'>Restage the Application
+
+##<a id='confirm'>Enjoy Your Data!
+
+After you restage the application, the AppInternals analysis server will automatically harvest performance data.
 
 **TODO Screenshot(s) of the Analysis Server** 
 

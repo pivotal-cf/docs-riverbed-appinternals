@@ -3,6 +3,9 @@ title: Riverbed SteelCentral AppInternals for PCF (Beta)
 owner: Partners
 ---
 
+
+<p class="note"><strong>BETA TEST SOFTWARE</strong><span>:</span> The Riverbed SteelCentral AppInternals for PCF tile is in beta test. It is intended for evaluation and test purposes only. Do not use this product in a PCF production environment.</p>
+
 <p class="note warning">
 <strong>BETA TEST SOFTWARE! </strong>
 The Riverbed SteelCentral AppInternals for PCF tile is currently in beta test. It is intended for evaluation and test purposes only. Do not use this product in a PCF production environment.
@@ -17,8 +20,7 @@ Riverbed® SteelCentral AppInternals™ for PCF monitors Java applications runni
 
 This documentation describes installing the AppInternals Service Broker tile for PCF and configuring applications to start with AppInternals monitoring.  
 
-AppInternals agents instrument and monitor Java applications to capture every application transaction.  
-In addition, the agent collects key operating system metrics for VM hosts (Diego/compute cells) where application containers are running. 
+AppInternals agents instrument and monitor Java applications to capture every application transaction.  In addition, the agent collects key operating system metrics for VM hosts (Diego/compute cells) where application containers are running. 
 
 The AppInternals analysis server harvests, processes, and displays this data, giving you immediate insight into application performance problems.  
 
@@ -28,32 +30,35 @@ See the following links for more information on AppInternals:
 
 * [Product documentation](http://doc.steelcentral.net/)
 
+<!-- Kirk, 06/07/2018: No, the content in this section does NOT seem to be shared automatically.  Compare these 2 links for AppDynamics:
+The comparable docs Overview section: https://docs.pivotal.io/partners/appdynamics/index.html#overview
+The corresponding 'Product overview' in http://network.pivotal.io: https://network.pivotal.io/products/p-appdynamics/
+-->
 <!-- **Note**: This overview will appear under **OVERVIEW**, combined with the description above in the tile's listing on 
 [Pivotal Network](http://network.pivotal.io).-->
 
 <!-- ## <a id='features'></a>Key Features -->
- ## <a id='features'></a>Summary of Steps 
+
+## <a id='features'></a>Summary of Steps 
 
 <!-- **Note**: This feature list will appear under **FEATURES** in the tile's listing on 
 [Pivotal Network](http://network.pivotal.io). 
 Make sure you list the key features of the tile (the integration). 
 We cannot accept a list of the key features of your product that we are integrating.-->
 
-The *AppInternals for PCF* tile includes the Riverbed AppInternals Service Broker and the BOSH add-on for the AppInternals Agent.  Install and configure the tile to deploy the agent on PCF VM hosts (additional steps are required for PCF v1.12).
+The *AppInternals for PCF* tile includes the Riverbed AppInternals Service Broker and the BOSH add-on for the AppInternals Agent.  Install and configure the tile to deploy the agent on PCF VM hosts (additional steps are required for PCF v1.12).  Then, push each application you want to monitor to PCF and bind it to the AppInternals service instance.  
 
 <%= image_tag("architecture.png") %>
 
-One-time steps:
+One-time steps in the PCF environment:
+1. In the PCF Ops Manager, [import the tile] (installing.html#install) 
+1. In the PCF Ops Manager, [configure the service broker] (installing.html#config) to specify agent settings, including the analysis server that will host the agent data
+1. In the Pivotal Apps Manager, [create an instance of the AppInternals service] (installing.html#service) 
 
-1 In the PCF Ops Manager, [Import the tile] (installing.html#install) 
-1 In the PCF Ops Manager, [Configure the service broker] (installing.html#config) to specify agent settings, including the analysis server that will host the agent data
-1 In the Pivotal Apps Manager, [Create an instance of the AppInternals service] (installing.html#service) 
-
-Steps for monitoring specific applications (repeat when the application changes):
-
-1 In your development environment or staging area, use the Cloud Foundry CLI to push an application from your environment to PCF
-1 Bind the application to the Appinternals service instance
-1 In your development environment or staging area, use the Cloud Foundry CLI to restage the application
+Steps for each application (repeat these steps when the application changes):
+1. In your development environment or staging area, [use the Cloud Foundry CLI to push the application] (using.html#push) from your environment to PCF
+1. Bind the application (using.html#bind)to the Appinternals service instance
+1. In your development environment or staging area, [use the Cloud Foundry CLI to restage the application] (using.html#restage)
 
 
 ## <a id="snapshot"></a>Version and Support Details 
@@ -69,7 +74,7 @@ The following table provides version and support information about Riverbed Stee
     </tr>
     <tr>
         <td>Release date</td>
-        <td>TODO: December 1, 2018</td>
+        <td>TODO: 06/29/2018 </td>
     </tr>
     <tr>
         <td>Software component version</td>
@@ -113,7 +118,7 @@ AppInternals support:
 
 * Send mail to [Riverbed Support](mailto:support@riverbed.com) 
 * Call Riverbed Support at 1-888-782-3822 (1-888-RVBD-TAC).  
-* Go to the [AppInternals support page (https://support.riverbed.com/content/support/software/steelcentral-ap/appinternals.html)
+* Go to the [AppInternals support page (https://support.riverbed.com/content/support/software/steelcentral-ap/appinternals.html) (login required)
 
 ## <a id='license'></a>Licensing
 
