@@ -5,59 +5,96 @@ owner: Partners
 
 This topic describes one approach to push an application to PCF and bind it to an AppInternals service instance. 
 
+As an example, it uses the spring-music application.  You can download the application and build instructions at [https://github.com/cloudfoundry-samples/spring-music] (https://github.com/cloudfoundry-samples/spring-music).  
+
 
 ## <a id='before'></a>Before You Begin
 
 1. Complete the one-time steps described in [Installing and Configuring AppInternals] (installing.html)
 1.  Create a [Pivotal Network account] (https://account.run.pivotal.io/z/uaa/sign-up) if you do not have one.
 1.  Install the Cloud Foundry Command Line Interface (cf CLI) if it is not already installed in your environment. See [Installing the cf CLI] (https://docs.pivotal.io/pivotalcf/2-1/cf-cli/install-go-cli.html).
+1.  Identify the API endpoint for your Pivotal environment.  The API endpoint is the URL for the Pivotal Apps Manager that you specify to log in using the cf CLI.  For example, if the URL for the Apps Manager UI is `https://apps.mypivotal.mycompany.com`, the API endpoint might be `https://api.mypivotal.mycompany.com`.
 
 
-##<a id='cli'></a>Log in Using the cf CLI and Pivotal API Endpoint 
+## <a id='cli'></a>Log in Using the cf CLI and Pivotal API Endpoint 
 
-1. Open a command-prompt window. 
+1. Open a command-prompt window.
+1. Use the `cf login` command and the Pivotal API endpoint to log in.  At the `Email>` prompt, supply the user name for the Apps Manager, and then the password.  Specify the `Org` and `Space` for your environment (`riverbed` and `qa` in this example).  For example:
+```
+     C:\testapps>cf login -a https://api.system1.nhqalab.com --skip-ssl-validation
+     API endpoint: https://api.system1.nhqalab.com
+     
+     Email> admin
+     
+     Password>
+     Authenticating...
+     OK
+     
+     Select an org (or press enter to skip):
+     1. riverbed
+     2. riverbed-appinternals-org
+     3. system
+     
+     Org> 1
+     Targeted org riverbed
+     
+     Targeted space qa
+     
+     API endpoint:   https://api.system1.nhqalab.com (API version: 2.98.0)
+     User:           admin
+     Org:            riverbed
+     Space:          qa
+     
+     C:\testapps>
+```
 
-1. Identify your Pivotal API endpoint and version. 
+## <a id='push'></a>Push the Application to Pivotal with `cf push`
 
-1. Enter the `cf API` command to :
+The `cf push` command pushes a new application or changes to an existing application to the Pivotal Apps Manager.  Issue the `cf push` command from the root directory of your application.  
 
-    $ cf api
+The following example pushes an application named `spring-music-doctest`.  (The `manifest.yaml` file specifies the application name.) 
 
-    You should see the following output:
+```
+C:\testapps>cd spring-music-master
+C:\testapps\spring-music-master>cf push
+Pushing from manifest to org riverbed / space qa as admin...
+Using manifest file C:\testapps\spring-music-master\manifest.yml
+Getting app info...
+Creating app with these attributes...
++ name:        spring-music-doctest
+  path:        C:\testapps\spring-music-master\build\libs\spring-music-master-1.0.jar
++ buildpack:   https://github.com/riverbed-appinternals-qa/java-buildpack.git
++ memory:      1G
+  routes:
++   spring-music-doctest-anxious-bushbuck.apps1.nhqalab.com
+.
+.
+.
+     state     since                  cpu      memory         disk           details
+#0   running   2018-06-08T19:16:47Z   160.1%   322.4M of 1G   170.1M of 1G
+```
 
-    api endpoint: https://api.my.pivotal.io
+## <a id='bind'></a>Bind the Application to the AppInternals Service in Pivotal Apps Manager
 
-api version: 2.103.0
+Use the Pivotal Apps Manager to bind the application to the AppInternals.
 
-    Log in to the Pivotal endpoint:
-
-    cf login
-
-    Enter your email address and Pivotal password when prompted.
-
-
-##<a id='push'></a>Push the Application
-
-##<a id='bind'></a>Bind the Service Plan to the Application
-
-1. Use the Apps Manager to find your application
-
-1. Select your application instance and click on the **Services** tab
-
+1. Log in to the Pivotal Apps Manager and navigate to your application.
+1. Select your application instance and click on the **Services** tab.
     <%= image_tag("SelectApp.png") %>
-
-1. Click on **BIND SERVICE**
-
+1. Click on **NEW SERVICE**.
     <%= image_tag("BindServiceAppsManager.png") %>
-
-1. Select the AppInternals Service and click **BIND**. There are no Parameters to add.
+1. Select the AppInternals Service.
+1. Select the **Riverbed License (free)** option (this is the only option and click **SELECT PLAN**. 
+1. In the **Instance Name** field, provide a value to display for the service instance name.  There are no parameters to add.  Click **CREATE**.
 
     <%= image_tag("BoundServiceAppsManager.png") %>
 
 
-##<a id='restage'></a>Restage the Application
+## <a id='restage'></a>Restage the Application
 
-##<a id='confirm'></a>Enjoy Your Data!
+
+
+## <a id='confirm'></a>Enjoy Your Data!
 
 After you restage the application, the AppInternals analysis server will automatically harvest performance data.
 
