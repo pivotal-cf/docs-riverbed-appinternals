@@ -6,7 +6,7 @@ owner: Partners
 This topic describes how to install and configure Riverbed SteelCentral AppInternals for PCF. It also describes how
 to create the AppInternals Service so that applications can bind to it for full profiling.
 
-##<a id='install'></a> Import the AppInternals Tile
+##<a id='install'></a> PCF Ops Manager: Importing the AppInternals Tile
 
 Install the **Riverbed SteelCentral AppInternals for PCF** tile using the Ops Manager Installation Dashboard:
 
@@ -17,7 +17,7 @@ Install the **Riverbed SteelCentral AppInternals for PCF** tile using the Ops Ma
 1. Under the **Import a Product** button, click **+** next to the version number of Riverbed SteelCentral AppInternals for PCF. 
 This adds the tile to your staging area.
 
-##<a id='config'></a> Configure the AppInternals Service Broker
+##<a id='config'></a> PCF Ops Manager: Configuring the AppInternals Service Broker
 
 1. Click the newly added **Riverbed SteelCentral AppInternals for PCF** tile.
 
@@ -57,20 +57,23 @@ complete the Proxy Settings [see Alternate Steps for PCF 1.12](#PCF112)
 1. Return to the Ops Manager Installation Dashboard and click **Apply changes** to install 
 Riverbed SteelCentral AppInternals for PCF tile.
 
-##<a id='service'></a> Create the AppInternals Service
+##<a id='service'></a> Pivotal Apps Manager: Creating the AppInternals Service Instance 
 
-In order to have AppInternals profile your applications, create the AppInternals Service and bind individual applications to it. 
-This section shows how to create the Service:
+Use the Pivotal Apps Manager to bind the application to the AppInternals service instance. 
+
+To have AppInternals profile your applications, create the AppInternals service instance and bind individual applications to it.  (See [Binding the Application] (using.html#bind) for the steps to bind specific applications to the service instance.)
+
+Follow these steps  to create the service instance:
 
 
 1. Open the Apps Manager
 1. Click **Marketplace**
-1. Click **Riverbed SteelCentral Appinternals**
-1. Click **SELECT THIS PLAN**
-<%= image_tag("SelectThisPlan.png") %>
-1. Give it an **Instance Name** with "appinternals" in it
-<%= image_tag("CreateService.png") %>
-1. Click **Create**
+1. Click the **Riverbed SteelCentral Appinternals** service
+<%= image_tag("CreateService1.png") %>
+1. Click **SELECT THIS PLAN** to open the **Instance Configuration** panel
+1. In the **Instance Configuration** panel, supply a service instance name.  The **Instance Name** value  must contain the sub-string `appinternals` (for example `appinternals-doctest`). 
+<%= image_tag("CreateService2.png") %>
+1. Click **Add**
 
 Now that you have an instance of the AppInternals Service running, you can bind applications to it.
 See the next section, [Using AppInternals](using.html), for instruction on how to bind Applications to get the full benefit of AppInternals.
