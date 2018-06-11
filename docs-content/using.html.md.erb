@@ -20,32 +20,33 @@ As an example, it uses the spring-music application.  You can download the appli
 
 1. Open a command-prompt window.
 1. Use the `cf login` command and the Pivotal API endpoint to log in.  At the `Email>` prompt, supply the user name for the Apps Manager, and then the password.  Specify the `Org` and `Space` for your environment (`riverbed` and `qa` in this example).  For example:
+
 ```
-     C:\testapps>cf login -a https://api.system1.nhqalab.com --skip-ssl-validation
-     API endpoint: https://api.system1.nhqalab.com
-     
-     Email> admin
-     
-     Password>
-     Authenticating...
-     OK
-     
-     Select an org (or press enter to skip):
-     1. riverbed
-     2. riverbed-appinternals-org
-     3. system
-     
-     Org> 1
-     Targeted org riverbed
-     
-     Targeted space qa
-     
-     API endpoint:   https://api.system1.nhqalab.com (API version: 2.98.0)
-     User:           admin
-     Org:            riverbed
-     Space:          qa
-     
-     C:\testapps>
+ C:\testapps>cf login -a https://api.system1.nhqalab.com --skip-ssl-validation
+ API endpoint: https://api.system1.nhqalab.com
+ 
+ Email> admin
+ 
+ Password>
+ Authenticating...
+ OK
+ 
+ Select an org (or press enter to skip):
+ 1. riverbed
+ 2. riverbed-appinternals-org
+ 3. system
+ 
+ Org> 1
+ Targeted org riverbed
+ 
+ Targeted space qa
+ 
+ API endpoint:   https://api.system1.nhqalab.com (API version: 2.98.0)
+ User:           admin
+ Org:            riverbed
+ Space:          qa
+ 
+ C:\testapps>
 ```
 
 ## <a id='push'></a>Push the Application to Pivotal with `cf push`
@@ -85,13 +86,42 @@ Use the Pivotal Apps Manager to bind the application to the AppInternals.
     <%= image_tag("BindServiceAppsManager.png") %>
 1. Select the AppInternals Service.
 1. Select the **Riverbed License (free)** option (this is the only option and click **SELECT PLAN**. 
-1. In the **Instance Name** field, provide a value to display for the service instance name.  There are no parameters to add.  Click **CREATE**.
+1. Provide a value to display for the service instance name.  The **Instance Name** value  must contain the sub-string `appinternals` (for example `appinternals-doctest`) which is the filter in the Java buildpack for binding your applications to AppInternals.  
+1. Make sure the application you want is selected in the ***Bind to App** field. 
+
+1. There are no parameters to add.  Click **CREATE**.
 
     <%= image_tag("BoundServiceAppsManager.png") %>
 
 
-## <a id='restage'></a>Restage the Application
+## <a id='restage'></a>Restage the Application with `cf restage`
 
+The `cf restage` command recreates the application so that it will be monitored by AppInternals.  Specify the application name (`spring-music-doctest` in this example).  
+
+```
+C:\testapps\spring-music-master>cf restage spring-music-doctest
+Restaging app spring-music-doctest in org riverbed / space qa as admin...
+
+Staging app and tracing logs...
+   Creating container
+   Successfully created container
+   Downloading app package...
+   Downloading build artifacts cache...
+   Downloaded build artifacts cache (45.9M)
+   Downloaded app package (40.6M)
+.
+.
+.
+Waiting for app to start...
+
+name:              spring-music-doctest
+.
+.
+.
+     state     since                  cpu      memory         disk           details
+#0   running   2018-06-08T20:41:03Z   213.2%   389.8M of 1G   209.4M of 1G
+
+```
 
 
 ## <a id='confirm'></a>Enjoy Your Data!
