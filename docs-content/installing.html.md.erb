@@ -142,20 +142,86 @@ Log in to the bosh environment using the director password:
 	ubuntu@opsmanager1:~$
 ```
 
-
 ### <a id='pcf112createyml'></a>Creating the *runtime-config-all.yml* file 
 
+Use the bosh `runtime-config` command and redirect its output to create a file.  You will add  AppInternals-specific values to this file and redeploy it.  This example creates the file `runtime-config-all.yml`:
+
+`bosh2 runtime-config  > runtime-config-all.yml`
 
 ### <a id='pcf112edityml'></a>Modifying the *runtime-config-all.yml* file 
 
-### <a id='pcf112login'></a>Logging in to the bosh Environment
+Edit the `runtime-config-all.yml` file created in the previous step and add AppInternals  values.  Use the following as a template and replace values in angle brackets.  
 
-### <a id='pcf112login'></a>Logging in to the bosh Environment
+```
+#-------------------------------------------------------------------------------
+# START APPINTERNALS DETAILS  
+# <REPLACE VALUES IN ANGLE BRACKETS> with values for your environment
+#-------------------------------------------------------------------------------
+releases:
+  - name: appinternals
+  #-----------------------------------------------------------------------------
+  # REPLACE WITH CURRENT VERSION AND BUILD:
+  #-----------------------------------------------------------------------------
+  version: "<10.14.x-BLxxx>"
 
-### <a id='pcf112login'></a>Logging in to the bosh Environment
+addons:
+  - name: appinternals-agent-linux
+    jobs:
+    - name: appinternals-agent-linux
+      release: appinternals
+      #-------------------------------------------------------------------------
+      # MODIFY PROPERTIES FOR YOUR ENVIRONMENT
+      # You only need to modify properties applicable for your environment:
+      # - Only modify the first 2 properties for an on-premises analysis server
+      # - Only modify the next 3 properties for a SaaS analysis server
+      # - Only modify proxy server properties as necessary
+      #-------------------------------------------------------------------------
+      properties:
+        rvbd_analysis_host: <Your On-prem Analysis Server>
+        rvbd_analysis_port: <Your On-prem Analysis Server Port>
+        rvbd_analysis_saas_host: <Your SaaS Analysis Server>
+        rvbd_analysis_saas_port: <Your SaaS Analysis Server Port>
+        rvbd_customerid: <Your  Customer ID for using SaaS Analysis Server>
+        rvbd_proxy_server_host: <Your Proxy Server Hostname or IP Address>
+        rvbd_proxy_server_port: <Your Proxy Server Port Number>
+        rvbd_proxy_server_user: <Your Proxy Server User Name>
+        rvbd_proxy_server_password: <Your Proxy Server Password>
+        rvbd_proxy_server_realm: <Your Proxy Server Realm>
+#-------------------------------------------------------------------------------
+# END APPINTERNALS DETAILS 
+#-------------------------------------------------------------------------------
+      include:
+        stemcell:
+        - os: ubuntu-trusty
+        - os: centos-7
+```
 
 
-## <a id='service'></a> Pivotal Apps Manager: Creating the AppInternals Service Instance 
+### <a id='pcf112upsateyml'></a>Apply the AppInternals Values to the PCF Environment
+
+1. Use the bosh `update-runtime-config` command to update the runtime environment on the director with AppInternals values added to the `runtime-config-all.yml` file:
+
+	`bosh2 update-runtime-config runtime-config-all.yml`
+1. Use the bosh `deployments` command to obtain the deployment name.  It is the value that begins with `cf-`: 
+	```
+	ubuntu@opsmanager1:~$ bosh2 deployments
+	Using environment '10.47.39.20' as user 'director' (bosh.*.read, openid, bosh.*.admin, bosh.read, bosh.admin)
+
+	Name                                        Release(s)                            Stemcell(s)                                       Team(s)  Cloud Config
+	cf-61abdf04c6985b6f35e1                     appinternals/10.14.1-BL566            bosh-vsphere-esxi-ubuntu-trusty-go_agent/3468.21  -        latest
+	.
+	.
+	.
+	```
+1.  Using the deployment name from the previous step, write deployment manifest details to a file (`manifest.yml` in this example): 
+
+	`ubuntu@opsmanager1:~$ bosh2 -d cf-61abdf04c6985b6f35e1 manifest > manifest.yml`
+
+1. Redeploy the manifest file created in the previous step: 
+
+    `bosh2 -d <Your Deployment Name> deploy manifest.yml`
+
+## <a id='service'></a>Pivotal Apps Manager: Creating the AppInternals Service Instance 
 
 Use the Pivotal Apps Manager to bind the application to the AppInternals service instance. 
 
