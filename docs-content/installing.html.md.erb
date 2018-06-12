@@ -18,7 +18,7 @@ Install the **Riverbed SteelCentral AppInternals for PCF** tile using the Ops Ma
 
 ## <a id='config'></a>PCF Ops Manager: Configuring Analysis Server Connection Details  
 
-**Works Only for PCF v2.x and Later**  Using the PCF Ops Manager to configure the target analysis server works only in PCF v2.x and later.  Supplying these settings in the AppInternals tile in PCF Ops Manager 1.12.x will have no effect.  You must instead configure connection details as described in [Alternate Steps for PCF 1.12](#PCF112). 
+**Works Only for PCF v2.x and Later**  Using the PCF Ops Manager to configure the target analysis server works only in PCF v2.x and later.  These tile settings are not available in PCF Ops Manager 1.12.x.  You must instead configure connection details as described in [Alternate Steps for PCF 1.12](#PCF112). 
 
 The AppInternals agents that monitor applications must connect to an analysis server that will store their performance data and host the user interface to analyze that data.  Settings in the **AppInternals Analysis Server** area specify analysis server connection details.  
 
@@ -70,7 +70,7 @@ The AppInternals tile requires a specific operating system version for its stemc
 
 ## <a id='PCF112'></a>PCF v1.12:  Configuring Analysis Server Connection Details 
 
-In PCF v1.12, specifying analysis server connection details in Ops Manager user interface does not work.  This section describes manual steps to specify those details.
+In PCF v1.12, the form for specifying analysis server connection details in Ops Manager user interface is not available.  This section describes manual steps to specify those details.
 
 ### <a id='pcf112login'></a>Logging in to Server Hosting the Ops Manager 
 
