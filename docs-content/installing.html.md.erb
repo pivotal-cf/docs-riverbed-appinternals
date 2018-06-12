@@ -202,17 +202,17 @@ addons:
 1. Use the bosh `update-runtime-config` command to update the runtime environment on the director with AppInternals values added to the `runtime-config-all.yml` file:
 
 	`bosh2 update-runtime-config runtime-config-all.yml`
-1. Use the bosh `deployments` command to obtain the deployment name.  It is the value that begins with `cf-`: 
-	```
-	ubuntu@opsmanager1:~$ bosh2 deployments
-	Using environment '10.47.39.20' as user 'director' (bosh.*.read, openid, bosh.*.admin, bosh.read, bosh.admin)
 
-	Name                                        Release(s)                            Stemcell(s)                                       Team(s)  Cloud Config
-	cf-61abdf04c6985b6f35e1                     appinternals/10.14.1-BL566            bosh-vsphere-esxi-ubuntu-trusty-go_agent/3468.21  -        latest
-	.
-	.
-	.
-	```
+1. Use the bosh `deployments` command to obtain the deployment name.  It is the value that begins with `cf-`: 
+```
+ubuntu@opsmanager1:~$ bosh2 deployments
+Using environment '10.47.39.20' as user 'director' (bosh.*.read, openid, bosh.*.admin, bosh.read, bosh.admin)
+Name                                        Release(s)                            Stemcell(s)                                       Team(s)  Cloud Config
+cf-61abdf04c6985b6f35e1                     appinternals/10.14.1-BL566            bosh-vsphere-esxi-ubuntu-trusty-go_agent/3468.21  -        latest
+.
+.
+.
+```
 1.  Using the deployment name from the previous step, write deployment manifest details to a file (`manifest.yml` in this example): 
 
 	`ubuntu@opsmanager1:~$ bosh2 -d cf-61abdf04c6985b6f35e1 manifest > manifest.yml`
