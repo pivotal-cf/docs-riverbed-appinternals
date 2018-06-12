@@ -206,9 +206,8 @@ addons:
 1. Use the bosh `deployments` command to obtain the deployment name.  It is the value that begins with `cf-`: 
 ```
 ubuntu@opsmanager1:~$ bosh2 deployments
-Using environment '10.47.39.20' as user 'director' (bosh.*.read, openid, bosh.*.admin, bosh.read, bosh.admin)
-Name                                        Release(s)                            Stemcell(s)                                       Team(s)  Cloud Config
-cf-61abdf04c6985b6f35e1                     appinternals/10.14.1-BL566            bosh-vsphere-esxi-ubuntu-trusty-go_agent/3468.21  -        latest
+Name                                        Release(s)                 
+cf-61abdf04c6985b6f35e1                     appinternals/10.14.1-BL566 
 .
 .
 .
@@ -219,7 +218,7 @@ cf-61abdf04c6985b6f35e1                     appinternals/10.14.1-BL566          
 
 1. Redeploy the manifest file created in the previous step: 
 
-    `bosh2 -d <Your Deployment Name> deploy manifest.yml`
+    `bosh2 -d cf-61abdf04c6985b6f35e1 deploy manifest.yml`
 
 ## <a id='service'></a>Pivotal Apps Manager: Creating the AppInternals Service Instance 
 
