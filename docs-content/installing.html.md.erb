@@ -11,11 +11,14 @@ You need to perform these tasks once only.  Then, you push and bind each applica
 
 Install the **Riverbed SteelCentral AppInternals for PCF** tile using the Ops Manager Installation Dashboard:
 
-1. Download the product file from [Pivotal Network] (https://network.pivotal.io/products/riverbed-appinternals).
-1. Navigate to the Ops Manager Installation Dashboard and click **Import a Product** to upload the product file. 
-1. Under the **Import a Product** button, click **+** next to the version number of Riverbed SteelCentral AppInternals for PCF. This adds the tile to your staging area.
+1. Download the product `riverbed-appinternals-<version>.pivotal` file from the [Pivotal Network] (https://network.pivotal.io/products/riverbed-appinternals).
+1. Navigate to the PCF Ops Manager Installation Dashboard and click **Import a Product**. Specify the `.pivotal` file you downloaded in the previous step.  This uploads the file to the Ops Manager and may take a couple of minutes.
+1. After importing the file, the tile name appears under the **Import a Product** button. Click **+** to add the tile to your staging area.  The orange bar at the bottom of the tile means the tile has not been configured.  
+	<%= image_tag("importTile.png") %>
 
-## <a id='config'></a> PCF Ops Manager: Configuring the AppInternals Tile 
+## <a id='config'></a>PCF Ops Manager: Configuring Analysis Server Details in the AppInternals Tile 
+
+<p class="note"><strong>For PCF v2.x and Later </strong><span>:</span> Using the PCF Ops Manager to configure the target analysis server works only in PCF v2.x and later.  Supplying these settings in the AppInternals tile in PCF Ops Manager 1.12.x will have no effect.  You must instead configure a bosh release as described in [see Alternate Steps for PCF 1.12](#PCF112). </p>
 
 1. Click the newly added **Riverbed SteelCentral AppInternals for PCF** tile.
 
@@ -55,6 +58,23 @@ complete the Proxy Settings [see Alternate Steps for PCF 1.12](#PCF112)
 1. Return to the Ops Manager Installation Dashboard and click **Apply changes** to install 
 Riverbed SteelCentral AppInternals for PCF tile.
 
+## <a id='stemcell'></a>PCF Ops Manager:  Import Stemcell Template 
+
+The AppInternals tile requires a specific operating system version for its stemcell template.  
+
+1. From the **Settings** tab, click **Stemcell**.  Messages indicate the required stemcell version. 
+1. If the required stemcell version has not been imported, there will be a red message in the display. Download the version for your IaaS environment it from the [Pivotal Network] (https://network.pivotal.io/products/stemcells#/releases/).  
+1. Click **Import Stemcell** to import the downloaded stemcell file.  Once the file imported, the display changes to a greeen message.
+	<%= image_tag("stemcell.png") %>
+
+## <a id='PCF112'></a> Alternate Steps for Configuring Analysis Server Details in PCF v1.12
+
+In PCF v1.12, the OpsManager does not support configuration of the Tile via its UI. 
+So there are some manual steps you must do.
+
+** TODO add more steps here **
+
+
 ## <a id='service'></a> Pivotal Apps Manager: Creating the AppInternals Service Instance 
 
 Use the Pivotal Apps Manager to bind the application to the AppInternals service instance. 
@@ -73,10 +93,3 @@ Follow these steps  to create the service instance:
 1. Click **Add**
 
 
-
-## <a id='PCF112'></a> Alternate Steps for PCF 1.12
-
-In PCF 1.12, the OpsManager does not support configuration of the Tile via its UI. 
-So there are some manual steps you must do.
-
-** TODO add more steps here **
