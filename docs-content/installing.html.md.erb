@@ -142,13 +142,13 @@ Log in to the bosh environment using the director password:
 	ubuntu@opsmanager1:~$
 ```
 
-### <a id='pcf112createyml'></a>Creating the *runtime-config-all.yml* file 
+### <a id='pcf112createyml'></a>Creating the runtime-config-all.yml file 
 
 Use the bosh `runtime-config` command and redirect its output to create a file.  You will add  AppInternals-specific values to this file and redeploy it.  This example creates the file `runtime-config-all.yml`:
 
 `bosh2 runtime-config  > runtime-config-all.yml`
 
-### <a id='pcf112edityml'></a>Modifying the *runtime-config-all.yml* file 
+### <a id='pcf112edityml'></a>Modifying the runtime-config-all.yml file 
 
 Edit the `runtime-config-all.yml` file created in the previous step and add AppInternals  values.  Use the following as a template and replace values in angle brackets.  
 
