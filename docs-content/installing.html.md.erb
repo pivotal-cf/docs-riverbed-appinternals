@@ -16,15 +16,17 @@ Install the **Riverbed SteelCentral AppInternals for PCF** tile using the Ops Ma
 1. After importing the file, the tile name appears under the **Import a Product** button. Click **+** to add the tile to your staging area.  The orange bar at the bottom of the tile means the tile has not been configured.  
 	<%= image_tag("importTile.png") %>
 
-## <a id='config'></a>PCF Ops Manager: Configuring Analysis Server Details in the AppInternals Tile 
+## <a id='config'></a>PCF Ops Manager: Configuring Analysis Server Connection Details  
 
-<p class="note"><strong>For PCF v2.x and Later </strong><span>:</span> Using the PCF Ops Manager to configure the target analysis server works only in PCF v2.x and later.  Supplying these settings in the AppInternals tile in PCF Ops Manager 1.12.x will have no effect.  You must instead configure a bosh release as described in [see Alternate Steps for PCF 1.12](#PCF112). </p>
+**Works Only for PCF v2.x and Later**  Using the PCF Ops Manager to configure the target analysis server works only in PCF v2.x and later.  Supplying these settings in the AppInternals tile in PCF Ops Manager 1.12.x will have no effect.  You must instead configure connection details as described in [Alternate Steps for PCF 1.12](#PCF112). 
+
+The AppInternals agents that monitor applications must connect to an analysis server that will store their performance data and host the user interface to analyze that data.  Settings in the **AppInternals Analysis Server** area specify analysis server connection details.  
 
 1. Click the newly added **Riverbed SteelCentral AppInternals for PCF** tile.
 
 1. From the **Settings** tab, click **AppInternals Analysis Server**
 
-1. If you are using an on premises Analysis Server, click the **On Prem** button [see Alternate Steps for PCF 1.12](#PCF112)
+1. If you are using an on-premises analysis server, click the **On Prem** button
 
 	<%= image_tag("OnPrem-OpsManager.png") %>
 
@@ -32,7 +34,7 @@ Install the **Riverbed SteelCentral AppInternals for PCF** tile using the Ops Ma
 	* **Analysis Server Address**: The name or IP address of your On Premises Riverbed Analysis Server (required)
 	* **Analysis Server Port**: The port that Analysis Server listens on (the default is normally used)
 	
-1. If you are using the Riverbed SaaS Anlysis Server, click the **SaaS** button [see Alternate Steps for PCF 1.12](#PCF112)
+1. If you are using the Riverbed SaaS analysis server, click the **SaaS** button 
 
 	<%= image_tag("SaaS-OpsManager.png") %>
 
@@ -41,12 +43,11 @@ Install the **Riverbed SteelCentral AppInternals for PCF** tile using the Ops Ma
 	* **SaaS Server Name**: The name of the Riverbed SaaS Server (the default is normally used)
 	* **SaaS Server Port**: The port that Analysis Server listens on (the default is normally used)
 	
-1. If your Cells (VMs) need to go through a Proxy Server to reach the Analysis Server, 
-complete the Proxy Settings [see Alternate Steps for PCF 1.12](#PCF112)
-
+1. If your Cells (VMs) need to go through a proxy server to reach the analysis server, 
+complete the Proxy Settings
 	<%= image_tag("Proxy-OpsManager.png") %>
 
-	Complete as many of these fields as necessary:
+	Supply values as necessary:
 	* **Proxy Server Address**: Your proxy server name or IP
 	* **Proxy Server Port**: Your proxy server's port (default is 8080)
 	* **Proxy Server Username**
@@ -58,21 +59,92 @@ complete the Proxy Settings [see Alternate Steps for PCF 1.12](#PCF112)
 1. Return to the Ops Manager Installation Dashboard and click **Apply changes** to install 
 Riverbed SteelCentral AppInternals for PCF tile.
 
-## <a id='stemcell'></a>PCF Ops Manager:  Import Stemcell Template 
+## <a id='stemcell'></a>PCF Ops Manager:  Importing the Stemcell 
 
 The AppInternals tile requires a specific operating system version for its stemcell template.  
 
-1. From the **Settings** tab, click **Stemcell**.  Messages indicate the required stemcell version. 
-1. If the required stemcell version has not been imported, there will be a red message in the display. Download the version for your IaaS environment it from the [Pivotal Network] (https://network.pivotal.io/products/stemcells#/releases/).  
-1. Click **Import Stemcell** to import the downloaded stemcell file.  Once the file imported, the display changes to a greeen message.
+1. From the **Settings** tab, click **Stemcell**.  Messages indicate the required stemcell version for AppInternals. 
+1. If the required stemcell version has not been imported, there will be a red message in the display. Download the version for your IaaS environment from the [Pivotal Network] (https://network.pivotal.io/products/stemcells#/releases/).  
+1. Click **Import Stemcell** to import the downloaded stemcell file.  Once the file imported, the display changes to a greeen message:
 	<%= image_tag("stemcell.png") %>
 
-## <a id='PCF112'></a> Alternate Steps for Configuring Analysis Server Details in PCF v1.12
+## <a id='PCF112'></a>PCF v1.12:  Configuring Analysis Server Connection Details 
 
-In PCF v1.12, the OpsManager does not support configuration of the Tile via its UI. 
-So there are some manual steps you must do.
+In PCF v1.12, specifying analysis server connection details in Ops Manager user interface does not work.  This section describes manual steps to specify those details.
 
-** TODO add more steps here **
+### <a id='pcf112login'></a>Logging in to Server Hosting the Ops Manager 
+
+Use SecureShell (SSH) to log in to the system that hosts the PCF Ops Manager.  
+
+```
+Unauthorized use is strictly prohibited. All access and activity
+is subject to logging and monitoring.
+Welcome to Ubuntu 14.04.5 LTS (GNU/Linux 4.4.0-111-generic x86_64)
+
+Last login: Tue Jun 12 15:14:36 2018 from 10.46.41.20
+ubuntu@opsmanager1:~$
+```
+
+### <a id='pcf112login'></a>Preparing and Logging in to the bosh Environment
+
+You use `bosh2` CLI commands these configuration steps.  To access the bosh environment, you need the following Ops Manager director details  available from the Ops Manager:
+* The director IPS value.  Obtain this value using this link (where &lt;*opsmanagerhost*&gt; is the system that hosts the PCF Ops Manager):
+	```
+	https://<opsmanagerhost>/infrastructure/director/status
+	```
+	<%= image_tag("directorIPS.png") %>
+* The director credentials to log in to the bosh environment. Obtain the value using this link:
+	```
+	https://<opsmanagerhost>/api/v0/deployed/director/credentials/director_credentials
+	```
+	This link returns the credentials in a format similar to the following:
+	```
+	{"credential":{"type":"simple_credentials","value":{"identity":"director","password":"samplevalue-notvalid"}}}
+	```
+
+1. Use the `alias-env` command to assign a name to an environment for easier access in subsequent CLI commands.  The `-e` argument specifies the directory IPS value.  For example, to assign the `riverbed-bosh` alias:
+	```
+	ubuntu@opsmanager1:~$ bosh2 alias-env riverbed-bosh -e 10.47.39.20 --ca-cert /var/tempest/workspaces/default/root_ca_certificate
+	Using environment '10.47.39.20' as anonymous user
+
+	Name      p-bosh
+	UUID      535780e1-a2f2-48dd-ae09-68952540f382
+	Version   264.7.0 (00000000)
+	CPI       vsphere_cpi
+	Features  compiled_package_cache: disabled
+			  config_server: enabled
+			  dns: disabled
+			  snapshots: disabled
+	User      (not logged in)
+
+	Succeeded
+	```
+1.  Export the alias value to the BOSH_ENVIRONMENT environment variable:
+	```
+	ubuntu@opsmanager1:~$ export BOSH_ENVIRONMENT=riverbed-bosh
+	```
+1. Log in to the bosh environment using the director password:
+	```
+	ubuntu@opsmanager1:~$ bosh2 log-in
+	Email (): director
+	Password ():
+
+	Successfully authenticated with UAA
+
+	Succeeded
+	ubuntu@opsmanager1:~$
+	```
+
+
+### <a id='pcf112createyml'></a>Creating the *runtime-config-all.yml* file 
+
+### <a id='pcf112edityml'></a>Modifying the *runtime-config-all.yml* file 
+
+### <a id='pcf112login'></a>Logging in to the bosh Environment
+
+### <a id='pcf112login'></a>Logging in to the bosh Environment
+
+### <a id='pcf112login'></a>Logging in to the bosh Environment
 
 
 ## <a id='service'></a> Pivotal Apps Manager: Creating the AppInternals Service Instance 
