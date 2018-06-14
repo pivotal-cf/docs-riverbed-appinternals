@@ -5,9 +5,9 @@ owner: Partners
 
 This topic describes how to install and configure Riverbed SteelCentral AppInternals for PCF. It also describes how to create the AppInternals service instance so that applications can bind to it.
 
-You need to perform these tasks once only.  Then, you push and bind each application that you want to monitor with AppInternals as described in [Using AppInternals] (using.html). 
+You only need to perform these tasks once. After you have done this, you push and bind each application that you want to monitor with AppInternals as described in [Using AppInternals] (using.html). 
 
-## <a id='install'></a>PCF Ops Manager: Importing the AppInternals Tile
+## <a id='install'></a>PCF Ops Manager: Importing Riverbed SteelCentral AppInternals for PCF
 
 Install the **Riverbed SteelCentral AppInternals for PCF** tile using the Ops Manager Installation Dashboard:
 
@@ -18,9 +18,14 @@ Install the **Riverbed SteelCentral AppInternals for PCF** tile using the Ops Ma
 
 ## <a id='config'></a>PCF Ops Manager: Configuring Analysis Server Connection Details  
 
-**Works Only for PCF v2.x and Later**  Using the PCF Ops Manager to configure the target analysis server works only in PCF v2.x and later.  These tile settings are not available in PCF Ops Manager 1.12.x.  You must instead configure connection details as described in [Alternate Steps for PCF 1.12](#PCF112). 
+**This tile only works with PCF v2.0.x and later.**  Using the PCF Ops Manager to configure the target 
+analysis server works only in PCF v2.0.x and later.
+These tile settings are not available in PCF Ops Manager 1.12.x. 
+You must instead configure connection details as described in [Alternate Steps for PCF 1.12](#PCF112). 
 
-The AppInternals agents that monitor applications must connect to an analysis server that will store their performance data and host the user interface to analyze that data.  Settings in the **AppInternals Analysis Server** area specify analysis server connection details.  
+The AppInternals agents, which monitor applications, must connect to an analysis server 
+that will store their performance data and host the user interface to analyze that data. 
+Settings in the **AppInternals Analysis Server** area specify the analysis server connection details.  
 
 1. Click the newly added **Riverbed SteelCentral AppInternals for PCF** tile.
 
@@ -32,7 +37,7 @@ The AppInternals agents that monitor applications must connect to an analysis se
 
 	Complete these fields:
 	* **Analysis Server Address**: The name or IP address of your On Premises Riverbed Analysis Server (required)
-	* **Analysis Server Port**: The port that Analysis Server listens on (the default is normally used)
+	* **Analysis Server Port**: The port that the Analysis Server listens on (the default is normally used)
 	
 1. If you are using the Riverbed SaaS analysis server, click the **SaaS** button 
 
@@ -41,7 +46,7 @@ The AppInternals agents that monitor applications must connect to an analysis se
 	Complete these fields:
 	* **Customer ID**: Your Trial or Subscription key from Riverbed (required)
 	* **SaaS Server Name**: The name of the Riverbed SaaS Server (the default is normally used)
-	* **SaaS Server Port**: The port that Analysis Server listens on (the default is normally used)
+	* **SaaS Server Port**: The port that the Analysis Server listens on (the default is normally used)
 	
 1. If your Cells (VMs) need to go through a proxy server to reach the analysis server, 
 complete the Proxy Settings
@@ -57,7 +62,7 @@ complete the Proxy Settings
 1. Click **Save**.
 
 1. Return to the Ops Manager Installation Dashboard and click **Apply changes** to install 
-Riverbed SteelCentral AppInternals for PCF tile.
+Riverbed SteelCentral AppInternals for PCF.
 
 ## <a id='stemcell'></a>PCF Ops Manager:  Importing the Stemcell 
 
@@ -65,12 +70,12 @@ The AppInternals tile requires a specific operating system version for its stemc
 
 1. From the **Settings** tab, click **Stemcell**.  Messages indicate the required stemcell version for AppInternals. 
 1. If the required stemcell version has not been imported, there will be a red message in the display. Download the version for your IaaS environment from the [Pivotal Network] (https://network.pivotal.io/products/stemcells#/releases/).  
-1. Click **Import Stemcell** to import the downloaded stemcell file.  Once the file imported, the display changes to a greeen message:
+1. Click **Import Stemcell** to import the downloaded stemcell file.  Once the file is imported, the display changes to a greeen message:
 	<%= image_tag("stemcell.png") %>
 
 ## <a id='PCF112'></a>PCF v1.12:  Configuring Analysis Server Connection Details 
 
-In PCF v1.12, the form for specifying analysis server connection details in Ops Manager user interface is not available.  This section describes manual steps to specify those details.
+In PCF v1.12.x, the form for specifying analysis server connection details in Ops Manager user interface is not available.  This section describes manual steps to specify those details.
 
 ### <a id='pcf112login'></a>Logging in to Server Hosting the Ops Manager 
 
@@ -87,7 +92,8 @@ ubuntu@opsmanager1:~$
 
 ### <a id='pcf112login'></a>Preparing and Logging in to the bosh Environment
 
-You use `bosh2` CLI commands these configuration steps.  To access the bosh environment, you need the following Ops Manager director details  available from the Ops Manager:
+You use `bosh2` CLI commands for these configuration steps.  To access the bosh environment, 
+you need the following Ops Manager director details available from the Ops Manager:
 * The director IPS value.  Obtain this value using this link (where &lt;*opsmanagerhost*&gt; is the system that hosts the PCF Ops Manager):
 	```
 	https://<opsmanagerhost>/infrastructure/director/status
