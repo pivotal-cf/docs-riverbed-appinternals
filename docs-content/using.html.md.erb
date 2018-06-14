@@ -5,21 +5,25 @@ owner: Partners
 
 This topic describes one approach to push an application to PCF and bind it to an AppInternals service instance. 
 
-This example uses the spring-music application.  You can download the application and build instructions at [https://github.com/cloudfoundry-samples/spring-music] (https://github.com/cloudfoundry-samples/spring-music).  
+This example uses the spring-music application. You can download the application and build instructions at [https://github.com/cloudfoundry-samples/spring-music](https://github.com/cloudfoundry-samples/spring-music).  
 
 
-## <a id='before'></a>Before You Begin
+## <a id='before'></a> Before You Begin
 
 1. Complete the one-time steps described in [Installing and Configuring AppInternals] (installing.html)
-1.  Create a [Pivotal Network account] (https://account.run.pivotal.io/z/uaa/sign-up) if you do not have one.
-1.  Install the Cloud Foundry Command Line Interface (cf CLI) if it is not already installed in your environment. See [Installing the cf CLI] (https://docs.pivotal.io/pivotalcf/2-1/cf-cli/install-go-cli.html).
-1.  Identify the API endpoint for your Pivotal environment.  The API endpoint is the URL for the Pivotal Apps Manager that you specify to log in using the cf CLI.  For example, if the URL for the Apps Manager UI is `https://apps.mypivotal.mycompany.com`, the API endpoint might be `https://api.mypivotal.mycompany.com`.
+
+1. Create a [Pivotal Network account](https://account.run.pivotal.io/z/uaa/sign-up) if you do not have one.
+
+1. Install the Cloud Foundry Command Line Interface (cf CLI) if it is not already installed in your environment. See [Installing the cf CLI](https://docs.pivotal.io/pivotalcf/2-1/cf-cli/install-go-cli.html).
+
+1. Identify the API endpoint for your Pivotal environment. The API endpoint is the URL for the Pivotal Apps Manager that you specify to log in using the cf CLI. For example, if the URL for the Apps Manager UI is `https://apps.mypivotal.mycompany.com`, the API endpoint might be `https://api.mypivotal.mycompany.com`.
 
 
-## <a id='cli'></a>cf CLI: Logging in to the Pivotal API Endpoint 
+## <a id='cli'></a> cf CLI: Logging In to the Pivotal API Endpoint 
 
 1. Open a command-prompt window.
-1. Use the `cf login` command and the Pivotal API endpoint to log in.  At the `Email>` prompt, supply the user name for the Apps Manager, and then the password.  Specify the `Org` and `Space` for your environment (`riverbed` and `qa` in this example).  For example:
+
+1. Use the `cf login` command and the Pivotal API endpoint to log in. At the `Email>` prompt, supply the user name for the Apps Manager, and then the password. Specify the `Org` and `Space` for your environment (`riverbed` and `qa` in this example).  For example:
 
 ```
  C:\testapps>cf login -a https://api.system1.nhqalab.com --skip-ssl-validation
@@ -49,11 +53,12 @@ This example uses the spring-music application.  You can download the applicatio
  C:\testapps>
 ```
 
+
 ## <a id='push'></a>cf CLI: Pushing the Application to Pivotal
 
-The `cf push` command pushes a new application or changes to an existing application to the Pivotal Apps Manager.  Issue the `cf push` command from the root directory of your application.  
+The `cf push` command pushes a new application or changes to an existing application to the Pivotal Apps Manager. Issue the `cf push` command from the root directory of your application.
 
-The following example pushes an application named `spring-music-doctest`.  (The `manifest.yaml` file specifies the application name.) 
+The following example pushes an application named `spring-music-doctest`. The `manifest.yaml` file specifies the application name.
 
 ```
 C:\testapps>cd spring-music-master
@@ -75,24 +80,31 @@ Creating app with these attributes...
 #0   running   2018-06-08T19:16:47Z   160.1%   322.4M of 1G   170.1M of 1G
 ```
 
-## <a id='bind'></a>Pivotal Apps Manager: Binding the Application to the AppInternals Service 
 
-Use the Pivotal Apps Manager to bind an application to the AppInternals service instance.  (Creating the service instance is a one-time task described in [Installing and Configuring AppInternals] (installing.html#service).)
+## <a id='bind'></a> Pivotal Apps Manager: Binding the Application to the AppInternals Service
+
+Use the Pivotal Apps Manager to bind an application to the AppInternals service instance. Creating the service instance is a one-time task described in [Installing and Configuring AppInternals](installing.html#service).
 
 1. Log in to the Pivotal Apps Manager and navigate to your application.
+
 1. Select your application instance and click on the **Services** tab.
+
 1. Click on **BIND SERVICE**.
     <%= image_tag("bindService1.png") %>
+
 1. In the **Service to Bind** list, select the AppInternals service.
-1. There are no parameters to add.  Leave the **Add Parameters** area empty.
+
+1. There are no parameters to add. Leave the **Add Parameters** area empty.
+
 1. Click **CREATE**.
     <%= image_tag("bindService2.png") %>
+
 1. Confirm that the application is now bound to the service:
     <%= image_tag("bindService3.png") %>
 
 
-## <a id='restage'></a>cf CLI: Restaging the Application 
-The `cf restage` command recreates the application so that it will be monitored by AppInternals.  Specify the application name (`spring-music-doctest` in this example).  
+## <a id='restage'></a> cf CLI: Restaging the Application 
+The `cf restage` command recreates the application so that it will be monitored by AppInternals. Specify the application name (`spring-music-doctest` in this example).  
 
 ```
 C:\testapps\spring-music-master>cf restage spring-music-doctest
@@ -120,12 +132,13 @@ name:              spring-music-doctest
 ```
 
 
-## <a id='confirm'></a>Enjoy Your Data!
+## <a id='confirm'></a> Enjoy Your Data!
 
 After you restage the application, the AppInternals analysis server will automatically harvest performance data. In a few minutes, transaction data for your instrumented applications will appear in the AppInternals interface.
 
-1. Log in to the analysis server specified during [configuration of the Appinternals tile] (installing.html#config)
-1. The **Instances** tab will show transactions from the newly-monitored application
+1. Log in to the analysis server specified during [configuration of the AppInternals tile](installing.html#config).
+
+1. The **Instances** tab will show transactions from the newly-monitored application.
 <%= image_tag("appInUI.png") %>
 
 <!--**TODO You can also use this section to include information about Architecture and Troubleshooting for known errors. 
