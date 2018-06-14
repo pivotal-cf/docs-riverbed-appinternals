@@ -5,18 +5,22 @@ owner: Partners
 
 This topic describes how to install and configure Riverbed SteelCentral AppInternals for PCF. It also describes how to create the AppInternals service instance so that applications can bind to it.
 
-You only need to perform these tasks once. After you have done this, you push and bind each application that you want to monitor with AppInternals as described in [Using AppInternals] (using.html). 
+You only need to perform these tasks once. After you have done this, you can push and bind each application that you want to monitor with AppInternals as described in [Using AppInternals](using.html). 
 
-## <a id='install'></a>PCF Ops Manager: Importing Riverbed SteelCentral AppInternals for PCF
+
+## <a id='install'></a> PCF Ops Manager: Importing Riverbed SteelCentral AppInternals for PCF
 
 Install the **Riverbed SteelCentral AppInternals for PCF** tile using the Ops Manager Installation Dashboard:
 
-1. Download the product `riverbed-appinternals-<version>.pivotal` file from the [Pivotal Network] (https://network.pivotal.io/products/riverbed-appinternals).
-1. Navigate to the PCF Ops Manager Installation Dashboard and click **Import a Product**. Specify the `.pivotal` file you downloaded in the previous step.  This uploads the file to the Ops Manager and may take a couple of minutes.
-1. After importing the file, the tile name appears under the **Import a Product** button. Click **+** to add the tile to your staging area.  The orange bar at the bottom of the tile means the tile has not been configured.  
+1. Download the product `riverbed-appinternals-<version>.pivotal` file from the [Pivotal Network](https://network.pivotal.io/products/riverbed-appinternals).
+
+1. Navigate to the PCF Ops Manager Installation Dashboard and click **Import a Product**. Specify the `.pivotal` file you downloaded in the previous step. This uploads the file to the Ops Manager and may take a couple of minutes.
+
+1. After importing the file, the tile name appears under the **Import a Product** button. Click **+** to add the tile to your staging area. The orange bar at the bottom of the tile means the tile has not been configured.  
 	<%= image_tag("importTile.png") %>
 
-## <a id='config'></a>PCF Ops Manager: Configuring Analysis Server Connection Details  
+
+## <a id='config'></a> PCF Ops Manager: Configuring Analysis Server Connection Details  
 
 **This tile only works with PCF v2.0.x and later.**  Using the PCF Ops Manager to configure the target 
 analysis server works only in PCF v2.0.x and later.
@@ -31,30 +35,25 @@ Settings in the **AppInternals Analysis Server** area specify the analysis serve
 
 1. From the **Settings** tab, click **AppInternals Analysis Server**
 
-1. If you are using an on-premises analysis server, click the **On Prem** button
-
+1. If you are using an on-premises analysis server, click the **On Prem** button.
 	<%= image_tag("OnPrem-OpsManager.png") %>
-
 	Complete these fields:
-	* **Analysis Server Address**: The name or IP address of your On Premises Riverbed Analysis Server (required)
-	* **Analysis Server Port**: The port that the Analysis Server listens on (the default is normally used)
+	* **Analysis Server Address**: The name or IP address of your On Premises Riverbed Analysis Server.
+	* **Analysis Server Port**: The port that the Analysis Server listens on. Most servers use the default option.
 	
-1. If you are using the Riverbed SaaS analysis server, click the **SaaS** button 
-
+1. If you are using the Riverbed SaaS analysis server, click the **SaaS** button.
 	<%= image_tag("SaaS-OpsManager.png") %>
-
 	Complete these fields:
-	* **Customer ID**: Your Trial or Subscription key from Riverbed (required)
-	* **SaaS Server Name**: The name of the Riverbed SaaS Server (the default is normally used)
-	* **SaaS Server Port**: The port that the Analysis Server listens on (the default is normally used)
+	* **Customer ID**: Your Trial or Subscription key from Riverbed.
+	* **SaaS Server Name**: The name of the Riverbed SaaS Server. Most servers use the default option.
+	* **SaaS Server Port**: The port that the Analysis Server listens on. Most servers use the default option.
 	
 1. If your Cells (VMs) need to go through a proxy server to reach the analysis server, 
-complete the Proxy Settings
+complete the Proxy Settings.
 	<%= image_tag("Proxy-OpsManager.png") %>
-
 	Supply values as necessary:
-	* **Proxy Server Address**: Your proxy server name or IP
-	* **Proxy Server Port**: Your proxy server's port (default is 8080)
+	* **Proxy Server Address**: Your proxy server name or IP.
+	* **Proxy Server Port**: Your proxy server's port. `8080` is the default.
 	* **Proxy Server Username**
 	* **Proxy Server Password** 
 	* **Proxy Server Realm**
@@ -64,20 +63,24 @@ complete the Proxy Settings
 1. Return to the Ops Manager Installation Dashboard and click **Apply changes** to install 
 Riverbed SteelCentral AppInternals for PCF.
 
-## <a id='stemcell'></a>PCF Ops Manager:  Importing the Stemcell 
+
+## <a id='stemcell'></a> PCF Ops Manager: Importing the Stemcell
 
 The AppInternals tile requires a specific operating system version for its stemcell template.  
 
-1. From the **Settings** tab, click **Stemcell**.  Messages indicate the required stemcell version for AppInternals. 
-1. If the required stemcell version has not been imported, there will be a red message in the display. Download the version for your IaaS environment from the [Pivotal Network] (https://network.pivotal.io/products/stemcells#/releases/).  
-1. Click **Import Stemcell** to import the downloaded stemcell file.  Once the file is imported, the display changes to a greeen message:
+1. From the **Settings** tab, click **Stemcell**. Messages indicate the required stemcell version for AppInternals. 
+
+1. If the required stemcell version has not been imported, there will be a red message in the display. Download the version for your IaaS environment from the [Pivotal Network](https://network.pivotal.io/products/stemcells#/releases/).  
+
+1. Click **Import Stemcell** to import the downloaded stemcell file. Once the file is imported, the display changes to a greeen message:
 	<%= image_tag("stemcell.png") %>
 
-## <a id='PCF112'></a>PCF v1.12:  Configuring Analysis Server Connection Details 
+
+## <a id='PCF112'></a> PCF v1.12: Configuring Analysis Server Connection Details
 
 In PCF v1.12.x, the form for specifying analysis server connection details in Ops Manager user interface is not available.  This section describes manual steps to specify those details.
 
-### <a id='pcf112login'></a>Logging in to Server Hosting the Ops Manager 
+### <a id='pcf112login'></a> Logging In to Server Hosting the Ops Manager 
 
 Use SecureShell (SSH) to log in to the system that hosts the PCF Ops Manager.  
 
@@ -90,18 +93,18 @@ Last login: Tue Jun 12 15:14:36 2018 from 10.46.41.20
 ubuntu@opsmanager1:~$
 ```
 
-### <a id='pcf112login'></a>Preparing and Logging in to the bosh Environment
+### <a id='pcf112login'></a> Preparing and Logging In to the BOSH Environment
 
-You use `bosh2` CLI commands for these configuration steps.  To access the bosh environment, 
+Use `bosh2` CLI commands for these configuration steps. To access the BOSH environment, 
 you need the following Ops Manager director details available from the Ops Manager:
-* The director IPS value.  Obtain this value using this link (where &lt;*opsmanagerhost*&gt; is the system that hosts the PCF Ops Manager):
+* The director IPS value. Obtain this value using this link (where &lt;*opsmanagerhost*&gt; is the system that hosts Ops Manager):
 	```
 	https://<opsmanagerhost>/infrastructure/director/status
 	```
 	For example:
 	<%= image_tag("directorIPS.png") %>
 
-* The director credentials to log in to the bosh environment. Obtain the value using this link:
+* The director credentials to log in to the BOSH environment. Obtain the value using this link:
 	```
 	https://<opsmanagerhost>/api/v0/deployed/director/credentials/director_credentials
 	```
@@ -110,7 +113,7 @@ you need the following Ops Manager director details available from the Ops Manag
 	{"credential":{"type":"simple_credentials","value":{"identity":"director","password":"samplevalue-notvalid"}}}
 	```
 
-Use the `alias-env` command to assign a name to an environment for easier access in subsequent CLI commands.  The `-e` argument specifies the directory IPS value.  For example, to assign the `riverbed-bosh` alias:
+Use the `alias-env` command to assign a name to an environment for easier access in subsequent CLI commands. The `-e` argument specifies the directory IPS value. For example, to assign the `riverbed-bosh` alias:
 
 ```
 	ubuntu@opsmanager1:~$ bosh2 alias-env riverbed-bosh -e 10.47.39.20 --ca-cert /var/tempest/workspaces/default/root_ca_certificate
@@ -135,7 +138,7 @@ Export the alias value to the BOSH_ENVIRONMENT environment variable:
 	ubuntu@opsmanager1:~$ export BOSH_ENVIRONMENT=riverbed-bosh
 ```
 
-Log in to the bosh environment using the director password:
+Log in to the BOSH environment using the director password:
 
 ```
 	ubuntu@opsmanager1:~$ bosh2 log-in
@@ -148,15 +151,15 @@ Log in to the bosh environment using the director password:
 	ubuntu@opsmanager1:~$
 ```
 
-### <a id='pcf112createyml'></a>Creating the runtime-config-all.yml file 
+### <a id='pcf112createyml'></a> Creating the runtime-config-all.yml file 
 
-Use the bosh `runtime-config` command and redirect its output to create a file.  You will add  AppInternals-specific values to this file and redeploy it.  This example creates the file `runtime-config-all.yml`:
+Use the `runtime-config` command and redirect its output to create a file. You must add AppInternals-specific values to this file and redeploy it. This example creates the file `runtime-config-all.yml`:
 
 `bosh2 runtime-config  > runtime-config-all.yml`
 
-### <a id='pcf112edityml'></a>Modifying the runtime-config-all.yml file 
+### <a id='pcf112edityml'></a> Modifying the runtime-config-all.yml file 
 
-Edit the `runtime-config-all.yml` file created in the previous step and add AppInternals  values.  Use the following as a template and replace values in angle brackets.  
+Edit the `runtime-config-all.yml` file created in the previous step and add AppInternals values. Use the following as a template and replace values in angle brackets.  
 
 ```
 #-------------------------------------------------------------------------------
@@ -202,14 +205,12 @@ addons:
         - os: centos-7
 ```
 
+### <a id='pcf112upsateyml'></a> Apply the AppInternals Values to the PCF Environment
 
-### <a id='pcf112upsateyml'></a>Apply the AppInternals Values to the PCF Environment
-
-1. Use the bosh `update-runtime-config` command to update the runtime environment on the director with AppInternals values added to the `runtime-config-all.yml` file:
-
+1. Use the `update-runtime-config` command to update the runtime environment on the director with AppInternals values added to the `runtime-config-all.yml` file:
 	`bosh2 update-runtime-config runtime-config-all.yml`
 
-1. Use the bosh `deployments` command to obtain the deployment name.  It is the value that begins with `cf-`: 
+1. Use the `deployments` command to obtain the deployment name. It is the value that begins with `cf-`: 
 ```
 ubuntu@opsmanager1:~$ bosh2 deployments
 Name                                        Release(s)                 
@@ -218,29 +219,32 @@ cf-61abdf04c6985b6f35e1                     appinternals/10.14.1-BL566
 .
 .
 ```
-1.  Using the deployment name from the previous step, write deployment manifest details to a file (`manifest.yml` in this example): 
 
+1.  Using the deployment name from the previous step, write deployment manifest details to a file (`manifest.yml` in this example):
 	`ubuntu@opsmanager1:~$ bosh2 -d cf-61abdf04c6985b6f35e1 manifest > manifest.yml`
 
-1. Redeploy the manifest file created in the previous step: 
-
+1. Redeploy the manifest file created in the previous step:
     `bosh2 -d cf-61abdf04c6985b6f35e1 deploy manifest.yml`
 
-## <a id='service'></a>Pivotal Apps Manager: Creating the AppInternals Service Instance 
+
+## <a id='service'></a> Pivotal Apps Manager: Creating the AppInternals Service Instance 
 
 Use the Pivotal Apps Manager to bind the application to the AppInternals service instance. 
 
-To have AppInternals profile your applications, create the AppInternals service instance and bind individual applications to it.  (See [Binding the Application] (using.html#bind) for the steps to bind specific applications to the service instance.)
+To have AppInternals profile your applications, create the AppInternals service instance and bind individual applications to it. (See [Binding the Application](using.html#bind) for the steps to bind specific applications to the service instance.)
 
-Follow these steps  to create the service instance:
+Follow these steps to create the service instance:
 
 1. Log in to the Pivotal Apps Manager.
+
 1. Click **Marketplace**.
+
 1. Click the **Riverbed SteelCentral Appinternals** service.
 <%= image_tag("CreateService1.png") %>
-1. Click **SELECT THIS PLAN** to accept the free license and open the **Instance Configuration** panel
-1. In the **Instance Configuration** panel, supply a service instance name.  The **Instance Name** value  must contain the sub-string `appinternals` (for example, `appinternals-doctest`). 
+
+1. Click **SELECT THIS PLAN** to accept the free license and open the **Instance Configuration** panel.
+
+1. In the **Instance Configuration** panel, supply a service instance name. The **Instance Name** value must contain the sub-string `appinternals` (for example, `appinternals-doctest`). 
 <%= image_tag("CreateService2.png") %>
-1. Click **Add**
 
-
+1. Click **Add**.
