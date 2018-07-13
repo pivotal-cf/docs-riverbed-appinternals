@@ -72,7 +72,7 @@ The AppInternals tile requires a specific operating system version for its stemc
 
 1. If the required stemcell version has not been imported, there will be a red message in the display. Download the version for your IaaS environment from the [Pivotal Network](https://network.pivotal.io/products/stemcells#/releases/).  
 
-1. Click **Import Stemcell** to import the downloaded stemcell file. Once the file is imported, the display changes to a greeen message:
+1. Click **Import Stemcell** to import the downloaded stemcell file. Once the file is imported, the display changes to a green message:
 	<%= image_tag("stemcell.png") %>
 
 
@@ -180,17 +180,18 @@ addons:
       release: appinternals
       #-------------------------------------------------------------------------
       # MODIFY PROPERTIES FOR YOUR ENVIRONMENT
-      # You only need to modify properties applicable for your environment:
-      # - Only modify the first 2 properties for an on-premises analysis server
-      # - Only modify the next 3 properties for a SaaS analysis server
-      # - Only modify proxy server properties as necessary
+      # You only need to modify properties applicable for your environment.
+      # Delete any properties that you do not use. 
       #-------------------------------------------------------------------------
       properties:
+      # Use these properties for an on-premises analysis server:
         rvbd_analysis_host: <Your On-prem Analysis Server>
         rvbd_analysis_port: <Your On-prem Analysis Server Port>
+      # Use these properties for a SaaS analysis server:
         rvbd_analysis_saas_host: <Your SaaS Analysis Server>
         rvbd_analysis_saas_port: <Your SaaS Analysis Server Port>
         rvbd_customerid: <Your  Customer ID for using SaaS Analysis Server>
+      # Use these properties if you're using a proxy server:
         rvbd_proxy_server_host: <Your Proxy Server Hostname or IP Address>
         rvbd_proxy_server_port: <Your Proxy Server Port Number>
         rvbd_proxy_server_user: <Your Proxy Server User Name>
