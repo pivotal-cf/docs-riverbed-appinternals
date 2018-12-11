@@ -35,23 +35,24 @@ Settings in the **AppInternals Analysis Server** area specify the analysis serve
 
 1. Click the newly added **Riverbed SteelCentral AppInternals for PCF** tile.
 
-1. From the **Settings** tab, click **AppInternals Analysis Server**
+1. From the **Settings** tab, click **AppInternals Analysis Server** 
+
+1. Under **Riverbed Analysis Server to use**, choose **On Prem** or **SaaS** 
 
 1. If you are using an on-premises analysis server, click the **On Prem** button.
 	<%= image_tag("OnPrem-OpsManager.png") %>
 	Complete these fields:
-	* **Analysis Server Address**: The name or IP address of your On Premises Riverbed Analysis Server.
-	* **Analysis Server Port**: The port that the Analysis Server listens on. Most servers use the default option.
+	* **Analysis Server Address**: The name or IP address of the on-premises analysis server.
+	* **Analysis Server Port**: The port that the analysis server listens on. Most servers use the default option.
 	
 1. If you are using the Riverbed SaaS analysis server, click the **SaaS** button.
 	<%= image_tag("SaaS-OpsManager.png") %>
 	Complete these fields:
-	* **Customer ID**: Your Trial or Subscription key from Riverbed.
+	* **Customer ID**: The customer ID for your SaaS analysis server.  You can find the customer ID in the **Install Agents** screen in the analysis server interface.
 	* **SaaS Server Name**: The name of the Riverbed SaaS Server. Most servers use the default option.
 	* **SaaS Server Port**: The port that the Analysis Server listens on. Most servers use the default option.
-	
-1. If your Cells (VMs) need to go through a proxy server to reach the analysis server, 
-complete the Proxy Settings.
+
+1. Under **Proxy Server Setup**, choose **Proxy Setup** if your Diego Cells (VMs) need to go through a proxy server to reach the analysis server.
 	<%= image_tag("Proxy-OpsManager.png") %>
 	Supply values as necessary:
 	* **Proxy Server Address**: Your proxy server name or IP.
