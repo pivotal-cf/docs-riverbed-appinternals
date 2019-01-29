@@ -22,10 +22,12 @@ Install the **Riverbed SteelCentral AppInternals for PCF** tile using the Ops Ma
 
 ## <a id='config'></a> PCF Ops Manager: Configuring Analysis Server Connection Details  
 
+<!-- 12/07/2018: Earl says, for 10.17, no 1.12 support
 **This tile only works with PCF v2.0.x and later.**  Using the PCF Ops Manager to configure the target 
 analysis server works only in PCF v2.0.x and later.
 These tile settings are not available in PCF Ops Manager 1.12.x. 
 You must instead configure connection details as described in [Alternate Steps for PCF 1.12](#PCF112). 
+-->
 
 The AppInternals agents, which monitor applications, must connect to an analysis server 
 that will store their performance data and host the user interface to analyze that data. 
@@ -33,23 +35,24 @@ Settings in the **AppInternals Analysis Server** area specify the analysis serve
 
 1. Click the newly added **Riverbed SteelCentral AppInternals for PCF** tile.
 
-1. From the **Settings** tab, click **AppInternals Analysis Server**
+1. From the **Settings** tab, click **AppInternals Analysis Server** 
+
+1. Under **Riverbed Analysis Server to use**, choose **On Prem** or **SaaS** 
 
 1. If you are using an on-premises analysis server, click the **On Prem** button.
 	<%= image_tag("OnPrem-OpsManager.png") %>
 	Complete these fields:
-	* **Analysis Server Address**: The name or IP address of your On Premises Riverbed Analysis Server.
-	* **Analysis Server Port**: The port that the Analysis Server listens on. Most servers use the default option.
+	* **Analysis Server Address**: The name or IP address of the on-premises analysis server.
+	* **Analysis Server Port**: The port that the analysis server listens on. Most servers use the default option.
 	
 1. If you are using the Riverbed SaaS analysis server, click the **SaaS** button.
 	<%= image_tag("SaaS-OpsManager.png") %>
 	Complete these fields:
-	* **Customer ID**: Your Trial or Subscription key from Riverbed.
+	* **Customer ID**: The customer ID for your SaaS analysis server.  You can find the customer ID in the **Install Agents** screen in the analysis server interface.
 	* **SaaS Server Name**: The name of the Riverbed SaaS Server. Most servers use the default option.
 	* **SaaS Server Port**: The port that the Analysis Server listens on. Most servers use the default option.
-	
-1. If your Cells (VMs) need to go through a proxy server to reach the analysis server, 
-complete the Proxy Settings.
+
+1. Under **Proxy Server Setup**, choose **Proxy Setup** if your Diego Cells (VMs) need to go through a proxy server to reach the analysis server.
 	<%= image_tag("Proxy-OpsManager.png") %>
 	Supply values as necessary:
 	* **Proxy Server Address**: Your proxy server name or IP.
@@ -61,7 +64,8 @@ complete the Proxy Settings.
 1. Click **Save**.
 
 1. Return to the Ops Manager Installation Dashboard and click **Apply changes** to install 
-Riverbed SteelCentral AppInternals for PCF.
+Riverbed SteelCentral AppInternals for PCF.  (For Version 2.3, first click **Review Pending Changes**, 
+then **Apply changes**.)
 
 
 ## <a id='stemcell'></a> PCF Ops Manager: Importing the Stemcell
@@ -76,6 +80,7 @@ The AppInternals tile requires a specific operating system version for its stemc
 	<%= image_tag("stemcell.png") %>
 
 
+<!-- 12/07/2018: Earl says, for 10.17, no 1.12 support
 ## <a id='PCF112'></a> PCF v1.12: Configuring Analysis Server Connection Details
 
 In PCF v1.12.x, the form for specifying analysis server connection details in Ops Manager user interface is not available.  This section describes manual steps to specify those details.
@@ -171,7 +176,7 @@ releases:
   #-----------------------------------------------------------------------------
   # REPLACE WITH CURRENT VERSION AND BUILD:
   #-----------------------------------------------------------------------------
-  version: "<10.14.x-BLxxx>"
+  version: "<10.17.x-BLxxx>"
 
 addons:
   - name: appinternals-agent-linux
@@ -226,7 +231,7 @@ cf-61abdf04c6985b6f35e1                     appinternals/10.14.1-BL566
 
 1. Redeploy the manifest file created in the previous step:
     `bosh2 -d cf-61abdf04c6985b6f35e1 deploy manifest.yml`
-
+-->
 
 ## <a id='service'></a> Pivotal Apps Manager: Creating the AppInternals Service Instance 
 
@@ -245,7 +250,7 @@ Follow these steps to create the service instance:
 
 1. Click **SELECT THIS PLAN** to accept the free license and open the **Instance Configuration** panel.
 
-1. In the **Instance Configuration** panel, supply a service instance name. The **Instance Name** value must contain the sub-string `appinternals` (for example, `appinternals-doctest`). 
+1. In the **Instance Configuration** panel, supply a service instance name. The **Instance Name** value is arbitrary but in this example is `appinternals-doctest`. 
 <%= image_tag("CreateService2.png") %>
 
 1. Click **Add**.

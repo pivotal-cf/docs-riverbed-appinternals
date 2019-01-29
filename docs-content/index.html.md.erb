@@ -1,18 +1,17 @@
 ---
-title: Riverbed SteelCentral AppInternals for PCF (Beta)
+title: Riverbed SteelCentral AppInternals for PCF 
 owner: Partners
 ---
 
+<!-- 12/05/2018: Earl says, for 10.17, no longer beta
 <p class="note warning"><strong>WARNING:</strong> The Riverbed SteelCentral AppInternals for PCF is currently in Beta and is intended for evaluation and test purposes only. Do not use this product in a PCF production environment.</p>
-
+-->
 
 ## <a id='overview'></a>Overview
 
 This documentation describes how to install Riverbed® SteelCentral AppInternals for PCF and configure 
 applications to start using AppInternals monitoring.  
 
-<!-- Riverbed® SteelCentral AppInternals™ for PCF monitors Java applications 
-running in a Pivotal Cloud Foundry v1.12 or v2.0 environment. -->
 
 AppInternals agents instrument and monitor Java applications to capture every application transaction. In addition, the agent collects key operating system metrics for VM hosts (Diego/compute cells) where application containers are running. 
 
@@ -23,7 +22,7 @@ See the following links for more information on AppInternals:
 * [Product overview](https://www.riverbed.com/products/steelcentral/steelcentral-appinternals.html)
 * [Product documentation](http://doc.steelcentral.net/)
 
-<!-- Kirk, 06/07/2018: No, the content in this section does NOT seem to be shared automatically.  Compare these 2 links for AppDynamics:
+<!-- Kirk, 06/07/2018: No, the note in the following comment (from the boilerplate) is wrong.  The content in this section does NOT seem to be shared automatically.  Compare these 2 links for AppDynamics:
 The comparable docs Overview section: https://docs.pivotal.io/partners/appdynamics/index.html#overview
 The corresponding 'Product overview' in http://network.pivotal.io: https://network.pivotal.io/products/p-appdynamics/
 -->
@@ -40,8 +39,7 @@ We cannot accept a list of the key features of your product that we are integrat
 
 Riverbed® SteelCentral AppInternals™ for PCF includes a Riverbed AppInternals Service Broker and a 
 BOSH add-on for the AppInternals Agent. 
-Install and configure the tile to deploy the agent on PCF VM hosts 
-(additional steps are required for PCF v1.12).
+Install and configure the tile to deploy the agent on PCF VM hosts.
 Then, push each application you want to monitor to PCF and bind it to the AppInternals service instance.  
 
 <%= image_tag("architecture.png") %>
@@ -61,8 +59,6 @@ Steps for each application (repeat these steps when the application changes):
 
 ## <a id="snapshot"></a> Product Snapshot
 
-<p class='note'><strong>Note:</strong> As of PCF v2.0, Elastic Runtime is renamed Pivotal Application Service (PAS).</p>
-
 The following table provides version and version-support information about the Riverbed SteelCentral AppInternals for PCF.
 
 <table class="nice">
@@ -70,33 +66,35 @@ The following table provides version and version-support information about the R
     <th>Details</th>
     <tr>
         <td>Tile version</td>
-        <td>v10.14.1</td>
+        <td>v10.17.1-BL510</td>
     </tr>
     <tr>
         <td>Release date</td>
-        <td>June 15, 2018 </td>
+        <td>December 29, 2018 </td>
     </tr>
     <tr>
         <td>Software component version</td>
-        <td>v10.14.1</td>
+        <td>v10.17.1-BL510</td>
     </tr>
     <tr>
         <td>Compatible Ops Manager version(s)</td>
-        <td>v1.12.x, v2.0.x, v2.1.x, and v2.2.x</td>
+        <td>v2.2.x, v2.3.x, and v2.4.x</td>
     </tr>
     <tr>
         <td>Compatible Pivotal Application Service version(s)</td>
-        <td>v1.12.x, v2.0.x, v2.1.x, and v2.2.x</td>
+        <td>v2.2.x, v2.3.x, and v2.4.x</td>
     </tr>
     <tr>
         <td>IaaS support</td>
-        <td>AWS, GCP, vSphere, Azure, OpenStack</td>
+        <td>AWS, GCP, vSphere, Azure, and OpenStack</td>
     </tr>
     <tr>
         <td>IPsec support?</td>
         <td>Yes</td>
     </tr>
 </table>
+
+<p class="note warning"><strong>WARNING:</strong>  Upgrades from 10.14.1 agent tiles are not supported.  Importing the Version 10.17.1 agent .pivotal file into an environment with the Version 10.14 tile will not work.  The import operation succeeds, but subsequent processing fails. Delete the 10.14 tile first.</p>
 
 
 ## <a id="reqs"></a> Requirements
