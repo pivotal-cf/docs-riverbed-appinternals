@@ -3,15 +3,39 @@ title: Release Notes
 owner: Partners
 ---
 
+<% if false %>
+This is a comment that is stripped out by the ruby processor
 <!-- **This topic should include the Release Notes for your product. For examples, see the 
 [GCP Service Broker Release Notes](http://docs.pivotal.io/gcp-sb/release-notes.html) or the 
 [ISS Knowtify Search Analytics Release Notes](http://docs.pivotal.io/knowtify/release.html).
 When you release a new version, add new release notes to this file, keeping the older notes below.** -->
+<% end %>
+
+<% if false %>
+This is a comment that is stripped out by the ruby processor
+HOPEFULLY, the markdown below will show indented lists.
+<% end %>
+
+## <a id="ver"></a> v10.19.0-**TODO**
+
+**Release Date:** **TODO**
+
+* **[New Feature]**: New fields in the [Tile Configuration](installing.html#config)
+  - Cluster name (defaults to the system domain name)
+  - Default config for all apps
+
+* **[UI Improvement]**: Cluster Name is prepended to the server name in the Servers and Instances Tabs of the UI (e.g. server name used to be "diego-0", it's now "my.cluster.name-diego/0")
+
+* **[New Feature]**: New optional [Environment Variables](using.html#envvars) for applications 
+  - `RVBD_APP_CONFIG`: the AppInternals config name to use for this App
+  - `RVBD_APP_INSTANCE`: the Instance Name to use for the App in the UI
+
+* **[Change]**: Use Java BuildPack version 4.17.3 or later  **TODO**  (There is no longer a need to copy and host our zip file when your build machine cannot access the internet. It's automatically available from the Tile.)
+
 
 ## <a id="ver"></a> v10.17.1-BL510
 
 **Release Date:** December 29, 2018 
 
-**Features included in this release:**
+* Support for Trusty, Centos, and Xenial stemcells
 
-* Subsequent release on the Pivotal Network
