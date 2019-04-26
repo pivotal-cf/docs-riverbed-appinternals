@@ -5,7 +5,7 @@ owner: Partners
 
 This topic describes how to install and configure Riverbed SteelCentral AppInternals for PCF. It also describes how to create the AppInternals service instance so that applications can bind to it.
 
-You only need to perform these tasks once. After you have done this, you can push and bind each application that you want to monitor with AppInternals as described in [Using AppInternals](using.html). 
+You only need to perform these tasks once (after an installation and after each upgrade). After you have done this, you can push and bind each application that you want to monitor with AppInternals as described in [Using AppInternals](using.html). 
 
 
 ## <a id='install'></a> PCF Ops Manager: Importing Riverbed SteelCentral AppInternals for PCF
@@ -22,13 +22,6 @@ Install the **Riverbed SteelCentral AppInternals for PCF** tile using the Ops Ma
 
 ## <a id='config'></a> PCF Ops Manager: Configuring Analysis Server Connection Details  
 
-<!-- 12/07/2018: Earl says, for 10.17, no 1.12 support
-**This tile only works with PCF v2.0.x and later.**  Using the PCF Ops Manager to configure the target 
-analysis server works only in PCF v2.0.x and later.
-These tile settings are not available in PCF Ops Manager 1.12.x. 
-You must instead configure connection details as described in [Alternate Steps for PCF 1.12](#PCF112). 
--->
-
 The AppInternals agents, which monitor applications, must connect to an analysis server 
 that will store their performance data and host the user interface to analyze that data. 
 Settings in the **AppInternals Analysis Server** area specify the analysis server connection details.  
@@ -36,8 +29,6 @@ Settings in the **AppInternals Analysis Server** area specify the analysis serve
 1. Click the newly added **Riverbed SteelCentral AppInternals for PCF** tile.
 
 1. From the **Settings** tab, click **AppInternals Analysis Server**.
-
-1. Under **Riverbed Analysis Server to use**, choose **On Prem** or **SaaS**.
 
 1. If you are using an on-premises analysis server, click the **On Prem** button.
 	<%= image_tag("OnPrem-OpsManager.png") %>
@@ -49,11 +40,16 @@ Settings in the **AppInternals Analysis Server** area specify the analysis serve
 1. If you are using the Riverbed SaaS analysis server, click the **SaaS** button.
 	<%= image_tag("SaaS-OpsManager.png") %>
 	Complete these fields:
-	* **Customer ID**: The customer ID for your SaaS analysis server.  You can find the customer ID in the **Install Agents** screen in the analysis server interface.
+	* **Customer ID**: The customer ID for your SaaS analysis server.  You can find the customer ID in the **Install Agents** screen in the analysis server user interface.
 	* **SaaS Server Name**: The name of the Riverbed SaaS Server. Most servers use the default option.
 	* **SaaS Server Port**: The port that the Analysis Server listens on. Most servers use the default option.
 
-1. Under **Proxy Server Setup**, choose **Proxy Setup** if your Diego Cells (VMs) need to go through a proxy server to reach the analysis server.
+1. Optional Fields
+    <%= image_tag("Optional-Fields.png") %>
+	* **PAS Cluster Name**: Use this to specify a custom name for your cluster that shows up in the Analysis Server. The default is your PAS System Domain name.
+	* **AppInternals configuration to use by default**: Specify the default configuration for apps to use. This can be overridden when an app is staged via the environment variable `RVBD_APP_CONFIG`. Make sure the name is spelled correctly to match an existing config on the Analysis Server.
+	
+1. Under **Proxy Server Setup**, choose **Proxy Setup** if your Cells (VMs) need to go through a proxy server to reach the analysis server.
 	<%= image_tag("Proxy-OpsManager.png") %>
 
 	Supply values as necessary:
@@ -65,31 +61,13 @@ Settings in the **AppInternals Analysis Server** area specify the analysis serve
 
 1. Click **Save**.
 
-1. In the Ops Manager Dashboard, do the following:
-
-    1. If you are using Ops Manager v2.3 or later, click **Review Pending Changes**.
-    For more information about this Ops Manager page, see
-    [Reviewing Pending Product Changes](https://docs.pivotal.io/pivotalcf/customizing/review-pending-changes.html).<br><br>
-
-    1. Click **Apply Changes**.
+1. Return to the Ops Manager Installation Dashboard and click **Apply changes** to install 
+Riverbed SteelCentral AppInternals for PCF.  (For Version 2.3+, first click **Review Pending Changes**, then **Apply changes**.)
 
 
-## <a id='stemcell'></a> PCF Ops Manager: Importing the Stemcell
-
-The AppInternals tile requires a specific operating system version for its stemcell template.  
-
-1. From the **Settings** tab, click **Stemcell**. Messages indicate the required stemcell version for AppInternals. 
-
-1. If the required stemcell version has not been imported, there will be a red message in the display. Download the version for your IaaS environment from the [Pivotal Network](https://network.pivotal.io/products/stemcells#/releases/).  
-
-1. Click **Import Stemcell** to import the downloaded stemcell file. Once the file is imported, the display changes to a green message:
-	<%= image_tag("stemcell.png") %>
-
-
+<p class="note warning"><strong>NOTE:</strong> When doing a selective deploy, you must deploy the **PAS Tile** in addition to the **AppInternals Tile**. Other tiles are optional.</p>
 
 ## <a id='service'></a> Pivotal Apps Manager: Creating the AppInternals Service Instance 
-
-Use the Pivotal Apps Manager to bind the application to the AppInternals service instance. 
 
 To have AppInternals profile your applications, create the AppInternals service instance and bind individual applications to it. (See [Binding the Application](using.html#bind) for the steps to bind specific applications to the service instance.)
 
@@ -102,9 +80,9 @@ Follow these steps to create the service instance:
 1. Click the **Riverbed SteelCentral Appinternals** service.
 <%= image_tag("CreateService1.png") %>
 
-1. Click **SELECT THIS PLAN** to accept the free license and open the **Instance Configuration** panel.
+1. Click **SELECT THIS PLAN** to accept the license, which opens the **Create a new service** panel.
 
-1. In the **Instance Configuration** panel, supply a service instance name. The **Instance Name** value is arbitrary but in this example is `appinternals-doctest`. 
-<%= image_tag("CreateService2.png") %>
+1. In the **Create a new service** panel, supply a service instance name. The **Instance Name** value is arbitrary but in this example is `appinternals-service`. 
+<%= image_tag("CreateService3.png") %>
 
-1. Click **Add**.
+1. Click **Create**.
