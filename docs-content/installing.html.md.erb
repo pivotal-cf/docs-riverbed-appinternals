@@ -28,10 +28,11 @@ Settings in the **AppInternals Analysis Server** area specify the analysis serve
 
 1. Click the newly added **Riverbed SteelCentral AppInternals for PCF** tile.
 
-1. From the **Settings** tab, click **AppInternals Analysis Server** 
+1. From the **Settings** tab, click **AppInternals Analysis Server**.
 
 1. If you are using an on-premises analysis server, click the **On Prem** button.
 	<%= image_tag("OnPrem-OpsManager.png") %>
+
 	Complete these fields:
 	* **Analysis Server Address**: The name or IP address of the on-premises analysis server.
 	* **Analysis Server Port**: The port that the analysis server listens on. Most servers use the default option.
@@ -50,6 +51,7 @@ Settings in the **AppInternals Analysis Server** area specify the analysis serve
 	
 1. Under **Proxy Server Setup**, choose **Proxy Setup** if your Cells (VMs) need to go through a proxy server to reach the analysis server.
 	<%= image_tag("Proxy-OpsManager.png") %>
+
 	Supply values as necessary:
 	* **Proxy Server Address**: Your proxy server name or IP.
 	* **Proxy Server Port**: Your proxy server's port. `8080` is the default.
@@ -61,6 +63,7 @@ Settings in the **AppInternals Analysis Server** area specify the analysis serve
 
 1. Return to the Ops Manager Installation Dashboard and click **Apply changes** to install 
 Riverbed SteelCentral AppInternals for PCF.  (For Version 2.3+, first click **Review Pending Changes**, then **Apply changes**.)
+
 
 <p class="note warning"><strong>NOTE:</strong> When doing a selective deploy, you must deploy the **PAS Tile** in addition to the **AppInternals Tile**. Other tiles are optional.</p>
 
