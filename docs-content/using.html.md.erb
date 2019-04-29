@@ -36,11 +36,11 @@ Before restaging your application, you can add environment variables to it to ta
     <th>Env Variable</th>
     <th>Description</th>
     <tr>
-        <td>`RVBD_APP_CONFIG`</td>
+        <td>RVBD_APP_CONFIG</td>
         <td>The AppInternals Config name, as seen in the Analysis Server UI. <br>This overrides the one specified in [configuration of the AppInternals tile](installing.html#config).<br>Make sure the name is spelled correctly to match an existing config on the Analysis Server.<br>If the name has spaces in it, replace them with + signs</td>
     </tr>
     <tr>
-        <td>`RVBD_APP_INSTANCE`</td>
+        <td>RVBD_APP_INSTANCE</td>
         <td>A meaningful instance name to use for the application, to override the default.</td>
     </tr>
 </table>
@@ -48,18 +48,16 @@ Before restaging your application, you can add environment variables to it to ta
 There are a couple of ways to set an environment variable, such as adding it to the application's manifest file, or using the cf command line.
 
 Here's how to do it by hand with the `cf set-env` command:
-```
-C:\testapps\spring-music-master>cf set-env spring-music-doctest RVBD_APP_CONFIG my-config-name
-```
 
-A more reliable way is to add this definition to the `env` block of the application's manifest file:
-```
----
-applications:
-- name: my-app
-  env:
-    RVBD_APP_CONFIG: my-config-name
-```
+    C:\testapps\spring-music-master>cf set-env spring-music-doctest RVBD_APP_CONFIG my-config-name
+
+A more reliable way is to add this definition to the `env` block of the application's manifest file, as follows:
+
+    ---
+    applications:
+    - name: my-app
+      env:
+        RVBD_APP_CONFIG: my-config-name
 
 You must `cf restage` your app after setting env variables.
 
@@ -71,29 +69,27 @@ Make sure you're using at least **JBP version 4.18 or higher**. Earlier versions
 ## <a id='restage'></a> Restaging the Application 
 The `cf restage` command recreates the application so that it will be monitored by AppInternals. Specify the application name (`spring-music-doctest` in this example).  
 
-```
-C:\testapps\spring-music-master>cf restage spring-music-doctest
-Restaging app spring-music-doctest in org riverbed / space qa as admin...
+    C:\testapps\spring-music-master>cf restage spring-music-doctest
+    Restaging app spring-music-doctest in org riverbed / space qa as admin...
 
-Staging app and tracing logs...
-   Creating container
-   Successfully created container
-   Downloading app package...
-   Downloading build artifacts cache...
-   Downloaded build artifacts cache (45.9M)
-   Downloaded app package (40.6M)
-.
-.
-.
-Waiting for app to start...
+    Staging app and tracing logs...
+       Creating container
+       Successfully created container
+       Downloading app package...
+       Downloading build artifacts cache...
+       Downloaded build artifacts cache (45.9M)
+       Downloaded app package (40.6M)
+    .
+    .
+    .
+    Waiting for app to start...
 
-name:              spring-music-doctest
-.
-.
-.
-     state     since                  cpu      memory         disk           details
-#0   running   2018-06-08T20:41:03Z   213.2%   389.8M of 1G   209.4M of 1G
-```
+    name:              spring-music-doctest
+    .
+    .
+    .
+         state     since                  cpu      memory         disk           details
+    #0   running   2018-06-08T20:41:03Z   213.2%   389.8M of 1G   209.4M of 1G
 
 
 ## <a id='confirm'></a> Enjoy Your Data!
