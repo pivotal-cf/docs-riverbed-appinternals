@@ -16,6 +16,30 @@ This is a comment that is stripped out by the ruby processor
 HOPEFULLY, the markdown below will show indented lists.
 <% end %>
 
+## <a id="ver"></a> v10.21.4-BL516
+
+**Release Date:** August 30, 2019
+
+* **[Change]**: Use Java BuildPack version 4.20 or higher - supports offline Java buildpacks.
+
+* **[Improvement]**: DotNetAgent performance enhancements.
+
+* **[Fixed]**: Installation of PCF tiles could fail due to broken soft links.
+
+* **[Fixed]**: Always use https to contact AppInternals service broker.
+
+* **[Fixed]** Several cases of incorrect or missing data:
+  * NancyFx and AspNet Core report client IP address incorrectly.
+  * Internal NullReferenceExceptions caused missing transactions.
+  * Trace Properties occasionally missing, such as a URL, which could affect transaction stitching.
+  * Instrumented application unable to connect to DSA, causing loss of data until an application restart.
+  * Overstitching issue causing many transactions to be reported as a single large transaction.
+
+* **[Fixed]** Application crashes
+  * Instrumentation of a Netty app might cause NoClassDefFoundError.
+  * Instrumentation of static interface methods in Java caused IncompatibleClassChangeError.
+
+
 ## <a id="ver"></a> v10.21.1-BL516
 
 **Release Date:** June 14, 2019
@@ -50,4 +74,3 @@ HOPEFULLY, the markdown below will show indented lists.
 **Release Date:** December 29, 2018 
 
 * Support for Applications using Trusty, Centos, and Xenial stemcells
-
