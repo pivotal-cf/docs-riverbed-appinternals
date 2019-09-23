@@ -1,5 +1,5 @@
 ---
-title: Riverbed SteelCentral AppInternals for PCF 
+title: Riverbed SteelCentral AppInternals for Pivotal Platform 
 owner: Partners
 ---
 
@@ -7,13 +7,13 @@ owner: Partners
 <% if false %>
 This is a comment that is stripped out by the ruby processor
 <!-- 12/05/2018: Earl says, for 10.17, no longer beta
-<p class="note warning"><strong>WARNING:</strong> The Riverbed SteelCentral AppInternals for PCF is currently in Beta and is intended for evaluation and test purposes only. Do not use this product in a PCF production environment.</p>
+<p class="note warning"><strong>WARNING:</strong> The Riverbed SteelCentral AppInternals for Pivotal Platform is currently in Beta and is intended for evaluation and test purposes only. Do not use this product in a Pivotal Platform production environment.</p>
 -->
 <% end %>
 
 ## <a id='overview'></a>Overview
 
-This documentation describes how to install Riverbed® SteelCentral AppInternals for PCF and configure 
+This documentation describes how to install Riverbed® SteelCentral AppInternals for Pivotal Platform and configure 
 applications to start using AppInternals monitoring.  
 
 AppInternals agents instrument and monitor .NetCore  and Java applications to capture every application transaction. In addition, the agent collects key operating system metrics for VM hosts (Diego/compute cells) where application containers are running. 
@@ -45,16 +45,16 @@ Make sure you list the key features of the tile (the integration).
 We cannot accept a list of the key features of your product that we are integrating.-->
 <% end %>
 
-Riverbed® SteelCentral AppInternals™ for PCF includes a Riverbed AppInternals Service Broker and a 
+Riverbed® SteelCentral AppInternals™ for Pivotal Platform includes a Riverbed AppInternals Service Broker and a 
 BOSH add-on for the AppInternals Agent. 
-Install and configure the tile to deploy the agent on PCF VM hosts. Create an AppInternals service instance. Then, bind each application you want to monitor to the AppInternals service instance.  
+Install and configure the tile to deploy the agent on Pivotal Platform VM hosts. Create an AppInternals service instance. Then, bind each application you want to monitor to the AppInternals service instance.  
 
 <%= image_tag("architecture.png") %>
 
-One-time steps in the PCF environment:
+One-time steps in the Pivotal Platform environment:
 
-1. In PCF Ops Manager, [import the tile](installing.html#install).
-1. In PCF Ops Manager, [configure the tile](installing.html#config) to specify connection details for the analysis server that will host the agent data.
+1. In Pivotal Platform Ops Manager, [import the tile](installing.html#install).
+1. In Pivotal Platform Ops Manager, [configure the tile](installing.html#config) to specify connection details for the analysis server that will host the agent data.
 1. In Pivotal Apps Manager, [create an instance of the AppInternals service](installing.html#service).
 
 Steps for each application (repeat these steps when the application changes):
@@ -66,7 +66,7 @@ Steps for each application (repeat these steps when the application changes):
 
 ## <a id="snapshot"></a> Product Snapshot
 
-The following table provides version and version-support information about the Riverbed SteelCentral AppInternals for PCF.
+The following table provides version and version-support information about the Riverbed SteelCentral AppInternals for Pivotal Platform.
 
 <table class="nice">
     <th>Element</th>
@@ -120,7 +120,7 @@ This version does not support Applications on Windows stemcells.
 
 ## <a id="feedback"></a> Feedback
 
-For PCF feature requests, questions, or information about a bug, email [Pivotal Cloud Foundry Feedback](mailto:cf-feedback@pivotal.io).
+For Pivotal Platform feature requests, questions, or information about a bug, email [Pivotal Platform Feedback](mailto:cf-feedback@pivotal.io).
 
 For AppInternals support: 
 

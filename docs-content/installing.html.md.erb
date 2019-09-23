@@ -3,35 +3,35 @@ title: Installing and Configuring AppInternals
 owner: Partners
 ---
 
-This topic describes how to install and configure Riverbed SteelCentral AppInternals for PCF. It also describes how to create the AppInternals service instance so that applications can bind to it.
+This topic describes how to install and configure Riverbed SteelCentral AppInternals for Pivotal Platform. It also describes how to create the AppInternals service instance so that applications can bind to it.
 
 You only need to perform these tasks once (after an installation and after each upgrade). After you have done this, you can push and bind each application that you want to monitor with AppInternals as described in [Using AppInternals](using.html). 
 
 
-## <a id='install'></a> PCF Ops Manager: Importing Riverbed SteelCentral AppInternals for PCF
+## <a id='install'></a> Pivotal Platform Ops Manager: Importing Riverbed SteelCentral AppInternals for Pivotal Platform
 
-Install the **Riverbed SteelCentral AppInternals for PCF** tile using the Ops Manager Installation Dashboard:
+Install the **Riverbed SteelCentral AppInternals for Pivotal Platform** tile using the Ops Manager Installation Dashboard:
 
 1. Download the product `riverbed-appinternals-<version>.pivotal` file from the [Pivotal Network](https://network.pivotal.io/products/riverbed-appinternals).
 
-1. Navigate to the PCF Ops Manager Installation Dashboard and click **Import a Product**. Specify the `.pivotal` file you downloaded in the previous step. This uploads the file to the Ops Manager and may take a couple of minutes.
+1. Navigate to the Pivotal Platform Ops Manager Installation Dashboard and click **Import a Product**. Specify the `.pivotal` file you downloaded in the previous step. This uploads the file to the Ops Manager and may take a couple of minutes.
 
 1. After importing the file, the tile name appears under the **Import a Product** button. Click **+** to add the tile to your staging area. The orange bar at the bottom of the tile means the tile has not been configured.  
 	<%= image_tag("importTile.png") %>
 
-## <a id='config'></a> PCF Ops Manager: Configuring Networks
+## <a id='config'></a> Pivotal Platform Ops Manager: Configuring Networks
 
 When configuring networks, choose the same network that PAS is using, as follows:
 	<%= image_tag("Tile-network-pas.png") %>
 
 
-## <a id='config'></a> PCF Ops Manager: Configuring Analysis Server Connection Details  
+## <a id='config'></a> Pivotal Platform Ops Manager: Configuring Analysis Server Connection Details  
 
 The AppInternals agents, which monitor applications, must connect to an analysis server 
 that will store their performance data and host the user interface to analyze that data. 
 Settings in the **AppInternals Analysis Server** area specify the analysis server connection details.  
 
-1. Click the newly added **Riverbed SteelCentral AppInternals for PCF** tile.
+1. Click the newly added **Riverbed SteelCentral AppInternals for Pivotal Platform** tile.
 
 1. From the **Settings** tab, click **AppInternals Analysis Server**.
 
