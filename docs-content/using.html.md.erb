@@ -1,14 +1,14 @@
 ---
-title: Using AppInternals
+title: Using Aternity APM
 owner: Partners
 ---
 
-This topic describes how to bind your Application to an AppInternals service instance and start collecting data.
+This topic describes how to bind your Application to an APM service instance and start collecting data.
 
 
-## <a id='bind'></a> Pivotal Apps Manager: Binding the Application to the AppInternals Service
+## <a id='bind'></a> Pivotal Apps Manager: Binding the Application to the APM Service
 
-Use the Pivotal Apps Manager to bind an application to the AppInternals service instance. Creating the service instance is only done once after the initial installation (and each upgrade) of AppInternals as described in [Installing and Configuring AppInternals](installing.html#service).
+Use the Pivotal Apps Manager to bind an application to the APM service instance. Creating the service instance is only done once after the initial installation (and each upgrade) of APM as described in [Installing and Configuring APM](installing.html#service).
 
 1. Log in to the Pivotal Apps Manager and navigate to your application.
 
@@ -17,7 +17,7 @@ Use the Pivotal Apps Manager to bind an application to the AppInternals service 
 1. Click on **BIND SERVICE**.
     <%= image_tag("bindService1.png") %>
 
-1. In the **Service to Bind** list, select the AppInternals service instance you created.
+1. In the **Service to Bind** list, select the APM service instance you created.
 
 1. There are no parameters to add. Leave the **Add Parameters** area empty.
 
@@ -47,7 +47,7 @@ Before restaging your application, you can add environment variables to it to ta
     <th>Description</th>
     <tr>
         <td>RVBD_APP_CONFIG</td>
-        <td>The AppInternals Config name, as seen in the Analysis Server UI. <br>This overrides the one specified in [configuration of the AppInternals tile](installing.html#config).<br>Make sure the name is spelled correctly to match an existing config on the Analysis Server.<br>If the name has spaces in it, replace them with + signs</td>
+        <td>The APM Config name, as seen in the Analysis Server UI. <br>This overrides the one specified in [configuration of the APM tile](installing.html#config).<br>Make sure the name is spelled correctly to match an existing config on the Analysis Server.<br>If the name has spaces in it, replace them with + signs</td>
     </tr>
     <tr>
         <td>RVBD_APP_INSTANCE</td>
@@ -89,7 +89,7 @@ as follows:
       - <language specific buildpack>
 
 ## <a id='restage'></a> Restaging the Application 
-The `cf restage` command recreates the application so that it will be monitored by AppInternals. Specify the application name (`spring-music-doctest` in this example).  
+The `cf restage` command recreates the application so that it will be monitored by APM. Specify the application name (`spring-music-doctest` in this example).  
 
     C:\testapps\spring-music-master>cf restage spring-music-doctest
     Restaging app spring-music-doctest in org riverbed / space qa as admin...
@@ -116,9 +116,9 @@ The `cf restage` command recreates the application so that it will be monitored 
 
 ## <a id='confirm'></a> Enjoy Your Data!
 
-After you restage the application, the AppInternals analysis server will automatically harvest performance data. In a few minutes, transaction data for your instrumented applications will appear in the AppInternals interface.
+After you restage the application, the APM analysis server will automatically harvest performance data. In a few minutes, transaction data for your instrumented applications will appear in the APM interface.
 
-1. Log in to the analysis server specified during [configuration of the AppInternals tile](installing.html#config).
+1. Log in to the analysis server specified during [configuration of the APM tile](installing.html#config).
 
 1. The **Instances** tab will show transactions from the newly-monitored application.
 <%= image_tag("appInUI.png") %>
