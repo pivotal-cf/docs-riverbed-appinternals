@@ -16,23 +16,20 @@ This is a comment that is stripped out by the ruby processor
 HOPEFULLY, the markdown below will show indented lists.
 <% end %>
 
-## <a id="ver"></a> v10.21.9-BL516
+## <a id="ver"></a> v11.4.2-TBD
 
 **Release Date:** TBD, 2020
 
-* **[New Feature]**: Support for Pivotal Platform 2.8
-* **[Change]**: Recommend use of Java BuildPack version 4.29 or higher (4.20+ is required)
-* **[Improvement]**: Log and trace files are flushed once a minute to prevent data loss
-* **[Improvement]**: The container ID is included in log and trace file names
-* **[Improvement]**: Reduced Agent memory usage by specifying max heap size
-* **[Improvement]**: Improved Agent performance by preventing reverse DNS lookups
-* **[Fix]**: Java instrumentation with Security Manager caused occasional WebLogic "stuck" threads
-* **[Fix]**: Race condition between container and agent that could prevent instrumentation at startup
-* **[Fix]**: Kafka Service did not start when instrumented
-* **[Fix]**: Instrumentation failed as shown by log message: "new offset out of range for LDC" 
-* **[Fix]**: Instrumentation failed as shown by log message: "Unable to check proxy-ness" 
-* **[Fix]**: Internal Method c.r.i.java.osb.AwTransportSendListenerWrapper appeared in traces
-
+* **[New]** The product is renamed to: Aternity APM for PCF
+* **[New]** .NET Core 3.0 / 3.1 Apps supported by a built-in buildpack
+* **[New]**: Support for Pivotal Platform 2.8 & 2.9
+* **[New]** Our built-in .NET Core buildpack is versioned, enabling you to continue using a specific version of the Aternity profiler
+* **[Change]** Recommend use of Java BuildPack version v4.29 or higher (v4.20+ is required). v4.29 allows you to choose a specific version of the Aternity profiler
+* **[Improvement]** You can create custom tags. When using the environment variables "RVBD_CT_<tag-name>" the <tag-name> can be specified in lowercase, and it will show up in the Analysis Server in lowercase. In addition,
+* **[Fix]** You can set the .NET Core instance name via manifest (it used to be the DLL name)
+* **[Fix]** Agent Log files are cleaned up, preventing excessive disk usage
+* **[Fix]** Several memory issues with the Agent were fixed
+* **[Fix]** Apache Kafka now supported
 
 
 
@@ -97,10 +94,3 @@ HOPEFULLY, the markdown below will show indented lists.
 * **[Change]**: Use **Java BuildPack version 4.18** or higher.  (There is no longer a need to copy and host our profiler zip file.)
 
 * **[Change]**: Update Tile to use Xenial stemcell. Continue support for Applications using Trusty, Centos, and Xenial stemcells
-
-
-## <a id="ver"></a> v10.17.1-BL510
-
-**Release Date:** December 29, 2018 
-
-* Support for Applications using Trusty, Centos, and Xenial stemcells
