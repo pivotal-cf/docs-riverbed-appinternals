@@ -21,7 +21,7 @@ Install the **Aternity APM for VMware Tanzu** tile using the Ops Manager Install
 
 ## <a id='config'></a> VMware Tanzu Ops Manager: Configuring Networks
 
-When configuring networks, choose the same network that TAS for VMs is using, as follows:
+When configuring networks, choose the same network that PAS is using, as follows:
 	<%= image_tag("Tile-network-pas.png") %>
 
 
@@ -51,7 +51,7 @@ Settings in the **APM Analysis Server** area specify the analysis server connect
 
 1. Optional Fields
     <%= image_tag("Optional-Fields.png") %>
-	* **TAS for VMs Cluster Name**: Use this to specify a custom name for your cluster that shows up in the Analysis Server. The default is your TAS for VMs System Domain name.
+	* **PAS Cluster Name**: Use this to specify a custom name for your cluster that shows up in the Analysis Server. The default is your PAS System Domain name.
 	* **APM configuration to use by default**: Specify the default configuration for apps to use. This can be overridden when an app is staged via the environment variable `RVBD_APP_CONFIG`. Make sure the name is spelled correctly to match an existing config on the Analysis Server.
 	
 1. Under **Proxy Server Setup**, choose **Proxy Setup** if your Cells (VMs) need to go through a proxy server to reach the analysis server.
@@ -68,12 +68,12 @@ Settings in the **APM Analysis Server** area specify the analysis server connect
 
 1. Return to the Ops Manager Installation Dashboard, click **Review Pending Changes**, and do the following:
 
-	* Select the TAS for VMs tile
+	* Select the PAS tile
 	* Select the Aternity tile
 	* Click **Apply changes**
 
 
-<p class="note warning"><strong>NOTE:</strong> When doing a selective deploy, you must deploy the TAS for VMs Tile in addition to the APM Tile. Other tiles are optional.</p>
+<p class="note warning"><strong>NOTE:</strong> When doing a selective deploy, you must deploy the PAS Tile in addition to the APM Tile. Other tiles are optional.</p>
 
 ## <a id='service'></a> Pivotal Apps Manager: Creating the APM Service Instance 
 
