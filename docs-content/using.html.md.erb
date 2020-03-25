@@ -34,7 +34,7 @@ You can also  do the binding in the application's manifest, instead of using the
     applications:
     - name: my-app
       services:
-      - <my-appinternals-service-instance-name>
+      - <my-apm-service-instance-name>
 
 
 
@@ -78,14 +78,14 @@ Make sure you're using at least **JBP version 4.20 or higher**. Earlier versions
 
 ## <a id='ncb'></a> .NET Core Buildpack
 
-Modify the application manifest by placing the `appinternals_dotnetcore_buildpack` in front of the normal buildpack,
+Modify the application manifest by placing the `aternity_apm_dotnetcore_buildpack` in front of the normal buildpack,
 as follows:
 
     ---
     applications:
     - name: my-app
       buildpacks:
-      - appinternals_dotnetcore_buildpack
+      - aternity_apm_dotnetcore_buildpack
       - <language specific buildpack>
 
 ## <a id='restage'></a> Restaging the Application 
