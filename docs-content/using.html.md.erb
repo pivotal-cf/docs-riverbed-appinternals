@@ -74,7 +74,7 @@ You must `cf restage` your app after setting env variables.
 
 ## <a id='jbp'></a> Java Buildpack
 
-Make sure you're using at least **JBP version 4.20 or higher**. Earlier versions are not supported.
+Make sure you're using at least **JBP version 4.20 or higher**. Version 4.29 or higher is recommended as you can pick an explicit version of Aternity APM if necessary (by cloning and editing the version string in /java-buildpack/config/riverbed_appinternals_agent.yml). Earlier versions of JBP always load the latest version of Aternity APM.
 
 ## <a id='ncb'></a> .NET Core Buildpack
 
