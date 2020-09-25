@@ -35,7 +35,7 @@ The corresponding 'Product overview' in http://network.pivotal.io: https://netwo
 [Pivotal Network](http://network.pivotal.io).-->
 <% end %>
 
-## <a id='features'></a> Summary of Steps 
+## <a id='features'></a> Summary of Steps
 
 <% if false %>
 This is a comment that is stripped out by the ruby processor
@@ -64,6 +64,7 @@ Steps for each application (repeat these steps when the application changes):
 1. [Restage](using.html#restage) the application.
 
 
+
 ## <a id="snapshot"></a> Product Snapshot
 
 The following table provides version and version-support information about the Aternity APM for VMware Tanzu.
@@ -73,23 +74,23 @@ The following table provides version and version-support information about the A
     <th>Details</th>
     <tr>
         <td>Tile version</td>
-        <td>v11.4.3-BL547</td>
+        <td>v11.7.1-BL518</td>
     </tr>
     <tr>
         <td>Release date</td>
-        <td>May 1, 2020</td>
+        <td>September 25, 2020</td>
     </tr>
     <tr>
         <td>Software component version</td>
-        <td>v11.4.3</td>
+        <td>v11.7.1</td>
     </tr>
     <tr>
         <td>Compatible Ops Manager version(s)</td>
-        <td>v2.6.x, v2.7.x, v2.8.x, v2.9.x </td>
+        <td>v2.7.x, v2.8.x, v2.9.x </td>
     </tr>
     <tr>
         <td>Compatible VMware Tanzu Application Service for VMs version(s)</td>
-        <td>v2.6.x, v2.7.x, v2.8.x, v2.9.x </td>
+        <td>v2.7.x, v2.8.x, v2.9.x </td>
     </tr>
     <tr>
        <td>BOSH stemcell version</td>
@@ -113,6 +114,73 @@ You must have an APM analysis server available to harvest transactional and envi
 As described in [Licensing](#license), the analysis server must be licensed in order to display data harvested from agents.
 
 
+## <a id='simplified'></a> Offline Buildpack Instructions
+Alternatively, deploy Aternity® APM for VMware Tanzu by simply adding the buildpack and environment variables to your application's manifest.
+
+<%= image_tag("agentless-architecture.png") %>
+
+### One-time Setup Steps
+
+#### Buildpack
+
+[Create a versioned offline buildpack](https://cli.cloudfoundry.org/en-US/cf/create-buildpack.html).
+
+```
+cf create-buildpack aternity-apm-dotnet-core-buildpack-11_7_1_BL518 aternity-apm-dotnet-core-buildpack-11.7.1_BL518.zip 
+```
+
+Versioning the buildpacks allow you to use different versions of the instrumentation with different applications.
+
+#### Application Security Group
+
+The APM instrumentation communicates to the Analysis Server using port 7090 by default.  [An application security group](https://docs.cloudfoundry.org/concepts/asg.html) must be defined to enable this communication.
+
+Example JSON configuration, where Analysis Server IP is 192.0.2.1.
+
+```
+[
+  {
+    "protocol": "tcp",
+    "destination": "192.0.2.1",
+    "ports": "7090",
+    "log": true,
+    "description": "Allow instrumentation traffic to Analysis Server"
+  }
+]
+```
+
+Create the security group and then bind it.
+
+```
+cf create-security-group NAME PATH-TO-JSON-FILE
+cf bind-running-security-group NAME
+```
+
+### Instrumenting An Application
+
+Add environment variables to the [env block of your application's manifest.yml](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest-attributes.html#env-block).
+
+```
+  env:
+    RVBD_APP_CONFIG: <config-name>
+    RVBD_APP_INSTANCE: <instance-name>
+    RVBD_ANALYSIS_SERVER: 192.0.2.1
+```
+
+Add the versioned Aternity APM buildpack to the [buildpacks block in your application’s manifest.yml](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest-attributes.html#buildpack).
+
+```
+  buildpacks: 
+  - aternity-apm-dotnet-core-buildpack-11_7_1_BL518
+  - dotnet_core_buildpack
+```
+
+Push your application.
+
+```
+cf push
+```
+
 ## <a id="limitations"></a> Limitations
 
 This version does not support Applications on Windows stemcells.
@@ -124,15 +192,15 @@ For VMware Tanzu feature requests, questions, or information about a bug, email 
 
 For APM support: 
 
-* Email [Riverbed Support](mailto:support@riverbed.com).
-* Call Riverbed Support at 1-888-782-3822 (1-888-RVBD-TAC).  
-* Go to the [Aternity support page](https://support.riverbed.com/content/support/software/steelcentral-ap/appinternals.html) (login required).
+* Email [Aternity Support](mailto:support@aternity.com).
+* Call Aternity Support at 1-617-250-5309.
+* Go to the [Aternity support page](https://support.aternity.com/) (login required).
 
 
 ## <a id='license'></a> Licensing
 
 The APM analysis server is available as a Software as a Service (SaaS) offering and as an on-premises installation.  
 
-* For a free trial of the SaaS analysis server, [sign up here](https://www.aternity.com/free-trial/#apm)
+* For a free trial, [sign up here](https://www.aternity.com/free-trial/#apm)
 
-* For a quote for purchasing a SaaS or on-premises license, go [here](http://www.riverbed.com/appinternals/buy/?s_rbp=product).
+* For details on how to buy, go [here](https://www.aternity.com/how-to-buy/)
