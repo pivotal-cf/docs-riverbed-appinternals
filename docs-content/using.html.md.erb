@@ -38,7 +38,7 @@ You can also  do the binding in the application's manifest, instead of using the
 
 
 
-## <a id='envvars'></a> Environment Variables per Application 
+## <a id='envvars'></a> Environment Variables per Application
 
 Before restaging your application, you can add environment variables to it to tailor certain things.
 
@@ -47,7 +47,7 @@ Before restaging your application, you can add environment variables to it to ta
     <th>Description</th>
     <tr>
         <td>RVBD_APP_CONFIG</td>
-        <td>The APM Config name, as seen in the Analysis Server UI. <br>This overrides the one specified in 
+        <td>The APM Config name, as seen in the Analysis Server UI. <br>This overrides the one specified in
          <a href="installing.html#service">Installing and Configuring APM</a>.
         <br>Make sure the name is spelled correctly to match an existing config on the Analysis Server.<br>If the name has spaces in it, replace them with + signs</td>
     </tr>
@@ -90,8 +90,8 @@ as follows:
       - aternity_apm_dotnetcore_buildpack
       - <language specific buildpack>
 
-## <a id='restage'></a> Restaging the Application 
-The `cf restage` command recreates the application so that it will be monitored by APM. Specify the application name (`spring-music-doctest` in this example).  
+## <a id='restage'></a> Restaging the Application
+The `cf restage` command recreates the application so that it will be monitored by APM. Specify the application name (`spring-music-doctest` in this example).
 
     C:\testapps\spring-music-master>cf restage spring-music-doctest
     Restaging app spring-music-doctest in org riverbed / space qa as admin...
@@ -124,9 +124,7 @@ After you restage the application, the APM analysis server will automatically ha
 1. The **Instances** tab will show transactions from the newly-monitored application.
 <%= image_tag("appInUI.png") %>
 
-<% if false %>
-This is a comment that is stripped out by the ruby processor
-<!--**You can also use this section to include information about Architecture and Troubleshooting for known errors. 
-If you include a Troubleshooting section, follow the Symptom/Explanation format used in the 
+<!--This is a comment that is stripped out by the ruby processor
+**You can also use this section to include information about Architecture and Troubleshooting for known errors.
+If you include a Troubleshooting section, follow the Symptom/Explanation format used in the
 [Okta Troubleshooting](http://docs.pivotal.io/p-identity/okta/troubleshooting.html) topic**.-->
-<% end %>
