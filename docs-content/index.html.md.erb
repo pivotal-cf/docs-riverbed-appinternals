@@ -33,19 +33,17 @@ The corresponding 'Product overview' in http://network.pivotal.io: https://netwo
 
 ## <a id='features'></a> Summary of Steps
 
-<
-This is a comment that is stripped out by the ruby processor
-<!-- **Note**: This feature list will appear under **FEATURES** in the tile's listing on
+<!--This is a comment that is stripped out by the ruby processor
+**Note**: This feature list will appear under **FEATURES** in the tile's listing on
 [Pivotal Network](http://network.pivotal.io).
 Make sure you list the key features of the tile (the integration).
 We cannot accept a list of the key features of your product that we are integrating.-->
-
 
 Aternity® APM  for VMware Tanzu includes an Aternity APM Service Broker and a
 BOSH add-on for the APM Agent.
 Install and configure the tile to deploy the agent on VMware Tanzu VM hosts. Create an APM service instance. Then, bind each application you want to monitor to the APM service instance.
 
-<%= image_tag("architecture.png") %>
+<%= image_tag("./images/architecture.png") %>
 
 One-time steps in the VMware Tanzu environment:
 
@@ -58,7 +56,6 @@ Steps for each application (repeat these steps when the application changes):
 1. [Set Environment Variables](using.html#envvars) for the application, usually in its manifest.
 1. [Bind the application](using.html#bind) to the APM service instance.
 1. [Restage](using.html#restage) the application.
-
 
 
 ## <a id="snapshot"></a> Product Snapshot
@@ -113,7 +110,7 @@ As described in [Licensing](#license), the analysis server must be licensed in o
 ## <a id='simplified'></a> Offline Buildpack Instructions
 Alternatively, deploy Aternity® APM for VMware Tanzu by simply adding the buildpack and environment variables to your application's manifest.
 
-<%= image_tag("agentless-architecture.png") %>
+<%= image_tag("./images/agentless-architecture.png") %>
 
 ### One-time Setup Steps
 
