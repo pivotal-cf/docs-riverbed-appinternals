@@ -1,24 +1,22 @@
 ---
-title: Aternity APM for VMware Tanzu 
+title: Aternity APM for VMware Tanzu
 owner: Partners
 ---
 
 
-<% if false %>
-This is a comment that is stripped out by the ruby processor
+
 <!-- 12/05/2018: Earl says, for 10.17, no longer beta
 <p class="note warning"><strong>WARNING:</strong> The Aprernity APM for VMware Tanzu is currently in Beta and is intended for evaluation and test purposes only. Do not use this product in a VMware Tanzu production environment.</p>
 -->
-<% end %>
 
 ## <a id='overview'></a>Overview
 
-This documentation describes how to install Aternity™ APM for VMware Tanzu and configure 
-applications to start using APM monitoring.  
+This documentation describes how to install Aternity™ APM for VMware Tanzu and configure
+applications to start using APM monitoring.
 
-APM agents instrument and monitor .NET Core  and Java applications to capture every application transaction. In addition, the agent collects key operating system metrics for VM hosts (Diego/compute cells) where application containers are running. 
+APM agents instrument and monitor .NET Core  and Java applications to capture every application transaction. In addition, the agent collects key operating system metrics for VM hosts (Diego/compute cells) where application containers are running.
 
-The APM analysis server harvests, processes, and displays this data, giving you immediate insight into application performance problems.  
+The APM analysis server harvests, processes, and displays this data, giving you immediate insight into application performance problems.
 
 See the following links for more information on APM:
 
@@ -31,23 +29,23 @@ This is a comment that is stripped out by the ruby processor
 The comparable docs Overview section: https://docs.pivotal.io/partners/appdynamics/index.html#overview
 The corresponding 'Product overview' in http://network.pivotal.io: https://network.pivotal.io/products/p-appdynamics/
 -->
-<!-- **Note**: This overview will appear under **OVERVIEW**, combined with the description above in the tile's listing on 
-[Pivotal Network](http://network.pivotal.io).-->
+<!-- **Note**: This overview will appear under **OVERVIEW**, combined with the description above in the tile's listing on
+[Tanzu Network](https://network.pivotal.io/products/riverbed-appinternals/).-->
 <% end %>
 
 ## <a id='features'></a> Summary of Steps
 
 <% if false %>
 This is a comment that is stripped out by the ruby processor
-<!-- **Note**: This feature list will appear under **FEATURES** in the tile's listing on 
-[Pivotal Network](http://network.pivotal.io). 
-Make sure you list the key features of the tile (the integration). 
+<!-- **Note**: This feature list will appear under **FEATURES** in the tile's listing on
+[Pivotal Network](http://network.pivotal.io).
+Make sure you list the key features of the tile (the integration).
 We cannot accept a list of the key features of your product that we are integrating.-->
 <% end %>
 
-Aternity® APM  for VMware Tanzu includes an Aternity APM Service Broker and a 
-BOSH add-on for the APM Agent. 
-Install and configure the tile to deploy the agent on VMware Tanzu VM hosts. Create an APM service instance. Then, bind each application you want to monitor to the APM service instance.  
+Aternity® APM  for VMware Tanzu includes an Aternity APM Service Broker and a
+BOSH add-on for the APM Agent.
+Install and configure the tile to deploy the agent on VMware Tanzu VM hosts. Create an APM service instance. Then, bind each application you want to monitor to the APM service instance.
 
 <%= image_tag("architecture.png") %>
 
@@ -126,7 +124,7 @@ Alternatively, deploy Aternity® APM for VMware Tanzu by simply adding the build
 [Create a versioned offline buildpack](https://cli.cloudfoundry.org/en-US/cf/create-buildpack.html).
 
 ```
-cf create-buildpack aternity-apm-dotnet-core-buildpack-11_7_1_BL518 aternity-apm-dotnet-core-buildpack-11.7.1_BL518.zip 
+cf create-buildpack aternity-apm-dotnet-core-buildpack-11_7_1_BL518 aternity-apm-dotnet-core-buildpack-11.7.1_BL518.zip
 ```
 
 Versioning the buildpacks allow you to use different versions of the instrumentation with different applications.
@@ -170,7 +168,7 @@ Add environment variables to the [env block of your application's manifest.yml](
 Add the versioned Aternity APM buildpack to the [buildpacks block in your application’s manifest.yml](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest-attributes.html#buildpack).
 
 ```
-  buildpacks: 
+  buildpacks:
   - aternity-apm-dotnet-core-buildpack-11_7_1_BL518
   - dotnet_core_buildpack
 ```
@@ -190,7 +188,7 @@ This version does not support Applications on Windows stemcells.
 
 For VMware Tanzu feature requests, questions, or information about a bug, email [VMware Tanzu Feedback](mailto:cf-feedback@pivotal.io).
 
-For APM support: 
+For APM support:
 
 * Email [Aternity Support](mailto:support@aternity.com).
 * Call Aternity Support at 1-617-250-5309.
@@ -199,7 +197,7 @@ For APM support:
 
 ## <a id='license'></a> Licensing
 
-The APM analysis server is available as a Software as a Service (SaaS) offering and as an on-premises installation.  
+The APM analysis server is available as a Software as a Service (SaaS) offering and as an on-premises installation.
 
 * For a free trial, [sign up here](https://www.aternity.com/free-trial/#apm)
 
