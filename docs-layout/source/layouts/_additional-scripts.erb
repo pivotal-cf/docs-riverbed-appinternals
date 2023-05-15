@@ -35,7 +35,7 @@
   var blackList = ['acceptance'];
 
   blackList.forEach(function(blackListedEnv) {
-    if (document.URL.indexOf(blackListedEnv) > -1 && blackListedEnv != "") {
+    if (document.URL.indexOf(blackListedEnv) > -1 && blackListedEnv !== "") {
       $('head').append('<meta name="hashtag" content="PivotalMoment">');
     }
   });
