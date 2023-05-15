@@ -17,12 +17,14 @@ Install the **Aternity APM for VMware Tanzu** tile using the Ops Manager Install
 1. Navigate to the VMware Tanzu Ops Manager Installation Dashboard and click **Import a Product**. Specify the `.pivotal` file you downloaded in the previous step. This uploads the file to the Ops Manager and may take a couple of minutes.  Note that you can install the new Aternity Tile over an existing Riverbed Tile. The functionality is the same, it is just a name change. The new tile will replace the old one, just like any other upgrade.
 
 1. After importing the file, the Aternity tile name appears under the **Import a Product** button. Click **+** to add the tile to your staging area. The orange bar at the bottom of the tile means the tile has not been configured.
-	<%= image_tag("./images/importTile.png") %>
+
+	![alt-text=""](./images/importTile.png)
 
 ## <a id='config'></a> VMware Tanzu Ops Manager: Configuring Networks
 
-When configuring networks, choose the same network that PAS is using, as follows:
-	<%= image_tag("./images/Tile-network-pas.png") %>
+When configuring networks, in the **Network** drop-down list,select the same network that PAS is using.
+
+![alt-text=""](./images/Tile-network-pas.png)
 
 
 ## <a id='config'></a> VMware Tanzu Ops Manager: Configuring Analysis Server Connection Details
@@ -36,27 +38,30 @@ Settings in the **APM Analysis Server** area specify the analysis server connect
 1. From the **Settings** tab, click **Analysis Server**.
 
 1. If you are using an on-premises analysis server, click the **On Prem** button.
-	<%= image_tag("./images/OnPrem-OpsManager.png") %>
+
+	![alt-text=""](./images/OnPrem-OpsManager.png)
 
 	Complete these fields:
 	* **Analysis Server Address**: The name or IP address of the on-premises analysis server.
 	* **Analysis Server Port**: The port that the analysis server listens on. Most servers use the default option.
 
-1. If you are using the Aternity SaaS analysis server, click the **SaaS** button.
-	<%= image_tag("./images/SaaS-OpsManager.png") %>
+2. If you are using the Aternity SaaS analysis server, select the **SaaS** option.
+
+	![alt-text=""](./images/SaaS-OpsManager.png)
+
 	Complete these fields:
 	* **Customer ID**: The customer ID for your SaaS analysis server.  You can find the customer ID in the **Install Agents** screen in the analysis server user interface.
 	* **SaaS Server Name**: The name of the Aternity SaaS Server. Most servers use the default option.
 	* **SaaS Server Port**: The port that the Analysis Server listens on. Most servers use the default option.
 
-1. Optional Fields
-    <%= image_tag("./images/Optional-Fields.png") %>
+3. Optional Fields
+
 	* **PAS Cluster Name**: Use this to specify a custom name for your cluster that shows up in the Analysis Server. The default is your PAS System Domain name.
 	* **Aternity APM configuration to use by default**: Specify the default configuration for apps to use. Note, however, that this can be overridden on a per-app basis when an app is staged via the environment variable `RVBD_APP_CONFIG`. Make sure the name is spelled correctly to match an existing config on the Analysis Server.
 
-1. Under **Proxy Server Setup**, choose **Proxy Setup** if your Cells (VMs) need to go through a proxy server to reach the analysis server.
+	![alt-text=""](./images/Optional-Fields.png)
 
-	<%= image_tag("./images/Proxy-OpsManager.png") %>
+4. Under **Proxy Server Setup**, choose **Proxy Setup** if your Cells (VMs) need to go through a proxy server to reach the analysis server.
 
 	Supply values as necessary:
 	* **Proxy Server Address**: Your proxy server name or IP.
@@ -64,16 +69,18 @@ Settings in the **APM Analysis Server** area specify the analysis server connect
 	* **Proxy Server Username**
 	* **Proxy Server Password**
 	* **Proxy Server Realm**
+<br>
+	![alt text=""](./images/Proxy-OpsManager.png)
 
-1. Click **Save**.
+5. Click **Save**.
 
-1. Return to the Ops Manager Installation Dashboard, click **Review Pending Changes**, and do the following:
+6. Return to the Ops Manager Installation Dashboard, click **Review Pending Changes**, and do the following:
     * Select the PAS tile.
     * Select the Aternity tile.
     * Click **Apply changes**.
 
 
-<p class="note warning"><strong>NOTE:</strong> When doing a selective deploy, you must deploy the PAS Tile in addition to the APM Tile. Other tiles are optional.</p>
+<p class="note warning"><strong>Warning:</strong> When doing a selective deploy, you must deploy the PAS Tile in addition to the APM Tile. Other tiles are optional.</p>
 
 ## <a id='service'></a> Pivotal Apps Manager: Creating the APM Service Instance
 
@@ -86,11 +93,13 @@ Follow these steps to create the service instance:
 1. Click **Marketplace**.
 
 1. Click the **Aternity APM** service.
-<%= image_tag("./images/CreateService1.png") %>
+
+	![alt-text=""](./images/CreateService1.png)
 
 1. Click **SELECT THIS PLAN** to accept the license, which opens the **Create a new service** panel.
 
-1. In the **Create a new service** panel, supply a service instance name. The **Instance Name** value is arbitrary but in this example is `apm-service-11-4-2`.
-<%= image_tag("./images/CreateService3.png") %>
+2. In the **Create a new service** panel, supply a service instance name. The **Instance Name** value is arbitrary but in this example is `apm-service-11-4-2`.
 
-1. Click **Create**.
+	![alt-text=""](./images/CreateService3.png)
+
+3. Click **Create**.
